@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:sleep/constants.dart';
 
 class AlarmTime extends StatelessWidget {
+  final String hh, mm;
+  AlarmTime({@required this.hh, @required this.mm});
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Constants.DEFAULT_BUTTON_COLOR_NON_SOLID,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const ListTile(
-            leading: Icon(Icons.album),
-            title: Text('The Enchanted Nightingale'),
+          ListTile(
+            title: Text(hh + " : " + mm),
             subtitle: Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
           ),
           Row(

@@ -1,5 +1,7 @@
 {
     "powerNap" : "Power Nap",
     "asmr" : "Sleep music",
-    "alarm" : "Alarm"
+    "alarm" : "Alarm",
+    "cancel" : "Cancel",
+    "save" : "Save"
 }
