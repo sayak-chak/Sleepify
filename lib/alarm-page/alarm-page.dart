@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sleep/alarm-page/alarm_bloc.dart';
-import 'package:sleep/alarm-page/alarm_events.dart';
+import 'package:sleep/main.dart';
 import 'package:sleep/alarm-page/alarm_time.dart';
 import 'package:sleep/constants.dart';
 
-class AlarmPage extends StatelessWidget {
-  final _alarmBloc = AlarmBloc();
+class AlarmPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => AlarmPageState();
+}
+
+class AlarmPageState extends State<AlarmPage> {
+  List<AlarmTime> _listOfAlarms;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _listOfAlarms = listOfAlarms;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,8 +43,11 @@ class AlarmPage extends StatelessWidget {
                       size: 50,
                       color: Constants.DEFAULT_BUTTON_COLOR_NON_SOLID,
                     ),
-                    onPressed: () => _alarmBloc.alarmEventSink
-                        .add(AddAlarm(alarmTime: AlarmTime())),
+                    onPressed: () {
+                      setState(() {
+                        _listOfAlarms.add(AlarmTime());
+                      });
+                    },
                   ),
                 ),
               ),
@@ -43,24 +56,18 @@ class AlarmPage extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(top: 100, bottom: 100),
             width: (MediaQuery.of(context).size.width / 3) * 2,
-            child: StreamBuilder(
-              initialData: <AlarmTime>[],
-              stream: _alarmBloc.alarmList,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  print("+++++===============> " +
-                      snapshot.data.length.toString());
-                  return ListView(
-                    padding: EdgeInsets.all(5),
-                    children: [...snapshot.data],
-                  );
-                }
-                return Container();
-              },
+            child: ListView(
+              padding: EdgeInsets.all(5),
+              children: [..._listOfAlarms],
             ),
           )
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

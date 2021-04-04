@@ -6,6 +6,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sleep/alarm-page/alarm-page.dart';
+import 'package:sleep/alarm-page/alarm_time.dart';
 import 'package:sleep/alarm-page/setup-alarm.dart';
 import 'package:sleep/components/bottom-navigaton-bar.dart';
 
@@ -14,6 +15,8 @@ import 'home/home.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
+List<AlarmTime> listOfAlarms = <AlarmTime>[];
+// final AlarmPage alarmPage = AlarmPage();
 void main() {
   runApp(MyApp());
 }
@@ -26,7 +29,9 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/powerNap': (BuildContext context) => PowerNap(),
         '/alarm': (BuildContext context) => AlarmPage(),
-        '/setup-alarm' : (BuildContext context) => SetupAlarm(alarmList: [],),
+        '/setup-alarm': (BuildContext context) => SetupAlarm(
+              alarmList: [],
+            ),
       },
       localizationsDelegates: [
         AppLocalizations.delegate,
