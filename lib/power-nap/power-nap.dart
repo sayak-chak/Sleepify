@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:sleep/utils/button.dart';
-import 'package:sleep/utils/constants.dart';
+import 'package:sleep/constants.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:sleep/main.dart';
 

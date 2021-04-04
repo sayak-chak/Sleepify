@@ -5,6 +5,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:sleep/alarm-page/alarm-page.dart';
+import 'package:sleep/alarm-page/setup-alarm.dart';
+import 'package:sleep/components/bottom-navigaton-bar.dart';
 
 import 'package:sleep/power-nap/power-nap.dart';
 import 'home/home.dart';
@@ -20,9 +23,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      routes: <String, WidgetBuilder> {
-      '/powerNap': (BuildContext context) => PowerNap(),
-    },
+      routes: <String, WidgetBuilder>{
+        '/powerNap': (BuildContext context) => PowerNap(),
+        '/alarm': (BuildContext context) => AlarmPage(),
+        '/setup-alarm' : (BuildContext context) => SetupAlarm(alarmList: [],),
+      },
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -32,13 +37,16 @@ class MyApp extends StatelessWidget {
         const Locale('en', ''),
       ],
       title: 'Flutter Demo',
-      home: Material(
-        child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("images/moonlight.jpeg"), fit: BoxFit.fill),
-            ),
-            child: Home()),
+      home: Scaffold(
+        body: Container(
+          constraints: BoxConstraints.expand(),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("images/moonlight.jpeg"), fit: BoxFit.fill),
+          ),
+          child: Home(),
+        ),
+        bottomNavigationBar: SleepAppBottomNavigationBar(),
       ),
     );
   }

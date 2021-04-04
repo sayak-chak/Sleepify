@@ -28,6 +28,8 @@ dependencies:
   intl: ^0.17.0
   flutter_local_notifications: ^5.0.0  
   font_awesome_flutter: ^8.9.0
+  date_format: ^2.0.2
+  flutter_glow: ^0.2.0
 
   google_fonts: 1.1.2
 
