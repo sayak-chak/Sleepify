@@ -6,17 +6,22 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sleep/alarm-page/alarm-page.dart';
+import 'package:sleep/alarm-page/alarm-time-picker.dart';
 import 'package:sleep/alarm-page/alarm_time.dart';
 import 'package:sleep/alarm-page/setup-alarm.dart';
 import 'package:sleep/components/bottom-navigaton-bar.dart';
+import 'package:sleep/global_bloc.dart';
 
 import 'package:sleep/power-nap/power-nap.dart';
-import 'home/home.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 List<AlarmTime> listOfAlarms = <AlarmTime>[];
 // final AlarmPage alarmPage = AlarmPage();
+final GLOBAL_BLOC = GlobalBloc();
+
+final APP_BODY_LIST = [Container(), AlarmTimePicker()];
+
 void main() {
   runApp(MyApp());
 }
@@ -28,7 +33,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: <String, WidgetBuilder>{
         '/powerNap': (BuildContext context) => PowerNap(),
-        '/alarm': (BuildContext context) => AlarmPage(),
+        '/alarm': (BuildContext context) => AlarmTimePicker(),
         '/setup-alarm': (BuildContext context) => SetupAlarm(
               alarmList: [],
             ),
@@ -49,7 +54,13 @@ class MyApp extends StatelessWidget {
             image: DecorationImage(
                 image: AssetImage("images/moonlight.jpeg"), fit: BoxFit.fill),
           ),
-          child: Home(),
+          child: StreamBuilder(
+            stream: GLOBAL_BLOC.appBodyIndex,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) return APP_BODY_LIST[snapshot.data];
+              return APP_BODY_LIST[0];
+            },
+          ),
         ),
         bottomNavigationBar: SleepAppBottomNavigationBar(),
       ),

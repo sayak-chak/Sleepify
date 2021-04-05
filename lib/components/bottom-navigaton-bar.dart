@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sleep/constants.dart';
+import 'package:sleep/global_events.dart';
+import 'package:sleep/main.dart';
 
-class SleepAppBottomNavigationBar extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return SleepAppBottomNavigationBarState();
-  }
-}
-
-class SleepAppBottomNavigationBarState
-    extends State<SleepAppBottomNavigationBar> {
-  int currentPageIndex = 0; //TODO - refactor maybe
+class SleepAppBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
@@ -40,15 +33,9 @@ class SleepAppBottomNavigationBarState
           label: '',
         ),
       ],
-      currentIndex: currentPageIndex,
       selectedItemColor: Colors.amber[800],
-      onTap: (selectedPageIndex) {
-        setState(() {
-          currentPageIndex = selectedPageIndex;
-          Navigator.pushNamed(context,
-              Constants.ROUTE_CORRESPONDING_TO_INDEX[selectedPageIndex]);
-        });
-      },
+      onTap: (selectedPageIndex) => GLOBAL_BLOC.appGlobalEventSink
+          .add(ChangeAppBody(updatedAppBodyIndex: selectedPageIndex)),
     );
   }
 }
