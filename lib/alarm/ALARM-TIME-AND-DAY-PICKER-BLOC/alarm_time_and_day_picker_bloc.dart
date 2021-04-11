@@ -1,26 +1,23 @@
 import 'dart:async';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:sleep/alarm-page/alarm_events.dart';
+import 'package:sleep/alarm/ALARM-BLOC/alarm_events.dart';
+import 'package:sleep/alarm/ALARM-DATA/alarm-data.dart';
+import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_event.dart';
 import 'package:sleep/database-client.dart';
-import 'package:sleep/global_events.dart';
-import 'package:sleep/alarm-page/alarm-page.dart';
 import 'package:sleep/datatbase.dart';
 
-//TODO : using impure func (mutating class vars), antipattern in block design pattern, refactor ASAP
-//TODO : break in two separate blocs
-class AlarmBloc {
-
+class AlarmTimeAndDayPickerBloc {
+  AlarmData _alarmData;
   int _hours, _minutes;
   bool _sunday, _monday, _tuesday, _wednesday, _thursday, _friday, _saturday;
   final _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-  final _alarmEventController = StreamController<AlarmEvent>();
-  // final _alarmStateController = StreamController<dynamic>();
+  final _alarmTimeAndDayEventController =
+      StreamController<AlarmTimeAndDayPickerEvent>();
 
-  Sink<AlarmEvent> get sink => _alarmEventController.sink;
+  Sink<AlarmTimeAndDayPickerEvent> get eventSink =>
+      _alarmTimeAndDayEventController.sink;
 
-  AlarmBloc() {
+  void _initializeWithDefaultValues() {
     _hours = 0;
     _minutes = 0;
     _sunday = false;
@@ -30,6 +27,12 @@ class AlarmBloc {
     _thursday = false;
     _friday = false;
     _saturday = false;
+  }
+
+  AlarmTimeAndDayPickerBloc() {
+    print("UR CALLING ME CONST");
+    _alarmData = AlarmData();
+    _initializeWithDefaultValues();
     var initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
     var initializationSettingsIOs = IOSInitializationSettings();
@@ -39,63 +42,61 @@ class AlarmBloc {
     _flutterLocalNotificationsPlugin.initialize(
       initSetttings,
     );
-    _alarmEventController.stream.listen(_mapAlarmEventsToState);
+    _alarmTimeAndDayEventController.stream.listen(_mapEventsToState);
   }
 
-  void _mapAlarmEventsToState(event) {
+  Future<void> _mapEventsToState(event) async {
     if (event is SetAlarm) {
       // _showNotificationMediaStyle();
-      _updateDatabase();
-      // print("===========>>>>>>>");
-      // print(_hours * 60 + _minutes);
-      // print("Sunday = " + _sunday.toString());
-      // print("Monday = " + _monday.toString());
-      // print("Tuesday = " + _tuesday.toString());
-      // print("Wednesday = " + _wednesday.toString());
-      // print("Thursday = " + _thursday.toString());
-      // print("Friday = " + _friday.toString());
-      // print("Saturday = " + _saturday.toString());
-      // print("=============>>>>>>>>>>>>>");
+      await _updateDatabase();
     } else if (event is SetHours) {
       _hours = event.hours;
     } else if (event is SetMinutes) {
       _minutes = event.minutes;
-    } else if (event is UpdateSunday) {
+    } else if (event is SetToSunday) {
       _sunday = !_sunday;
-    } else if (event is UpdateMonday) {
+    } else if (event is SetToMonday) {
       _monday = !_monday;
-    } else if (event is UpdateTuesday) {
+    } else if (event is SetToTuesday) {
       _tuesday = !_tuesday;
-    } else if (event is UpdateWednesday) {
+    } else if (event is SetToWednesday) {
       _wednesday = !_wednesday;
-    } else if (event is UpdateThursday) {
+    } else if (event is SetToThursday) {
       _thursday = !_thursday;
-    } else if (event is UpdateFriday) {
+    } else if (event is SetToFriday) {
       _friday = !_friday;
-    } else if (event is UpdateSaturday) {
+    } else if (event is SetToSaturday) {
       _saturday = !_saturday;
     }
   }
 
   Future<void> _updateDatabase() async {
-    final db = await DBProvider.db.database;
-    final int id = _hours * 60 + _minutes;
-
-    int count = await db.delete("ALARM", where: "minutes_id = "+id.toString());
-    // if (count == 0) {
-    await db.insert(
-        "ALARM",
-        Client(
-          minutes_id: id,
-          sunday: true,
-          monday: false,
-          tuesday: false,
-          wednesday: true,
-          thursday: true,
-          friday: true,
-          saturday: true,
-        ).toMap());
-    // }
+    int id = _hours * 60 + _minutes;
+    await _alarmData.upsert(
+        minutesId: id,
+        sunday: _sunday,
+        monday: _monday,
+        tuesday: _tuesday,
+        wednesday: _wednesday,
+        thursday: _thursday,
+        friday: _friday,
+        saturday: _saturday);
+    _initializeWithDefaultValues();
+    print("Sunday = " +
+        _sunday.toString() +
+        "\nMonday =" +
+        _monday.toString() +
+        "\nTuesday =" +
+        _tuesday.toString() +
+        "\nWednesday =" +
+        _wednesday.toString() +
+        "\nThursday =" +
+        _thursday.toString() +
+        "\nFriday =" +
+        _friday.toString() +
+        "\nSaturday =" +
+        _saturday.toString() +
+        "\n");
   }
 
   Future<void> _showNotificationMediaStyle() async {
@@ -124,6 +125,7 @@ class AlarmBloc {
   }
 
   void dispose() {
-    _alarmEventController.close();
+    _alarmTimeAndDayEventController.close();
+    // _alarmStateController.close();
   }
 }

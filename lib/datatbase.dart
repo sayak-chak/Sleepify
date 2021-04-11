@@ -25,7 +25,7 @@ class DBProvider {
           "sunday BIT,"
           "monday BIT,"
           "tuesday BIT,"
-          "wednedsay BIT,"
+          "wednesday BIT,"
           "thursday BIT,"
           "friday BIT,"
           "saturday BIT"

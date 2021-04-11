@@ -1,27 +1,22 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:sleep/alarm-page/alarm_bloc.dart';
-import 'package:sleep/alarm-page/alarm_events.dart';
+import 'package:sleep/alarm/ALARM-BLOC/alarm_bloc.dart';
+import 'package:sleep/alarm/ALARM-BLOC/alarm_events.dart';
+import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_bloc.dart';
+import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_event.dart';
 import 'package:sleep/constants.dart';
+import 'package:sleep/global_bloc.dart';
 import 'package:sleep/global_events.dart';
 import 'package:sleep/main.dart';
 
 class CancelOrSave extends StatelessWidget {
-  // final int minutes;
-  // final bool sunday, monday, tuesday, wednesday, thursday, friday, saturday;
   final AlarmBloc alarmBloc;
-  CancelOrSave({
-    @required this.alarmBloc,
-    // @required this.minutes,
-    // @required this.sunday,
-    // @required this.monday,
-    // @required this.tuesday,
-    // @required this.wednesday,
-    // @required this.thursday,
-    // @required this.friday,
-    // @required this.saturday,
-  });
+  final AlarmTimeAndDayPickerBloc alarmTimeAndDayPickerBloc;
+
+  CancelOrSave(
+      {@required this.alarmBloc, @required this.alarmTimeAndDayPickerBloc});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,7 +33,11 @@ class CancelOrSave extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(5))),
             child: TextButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => alarmBloc.eventSink.add(
+                UpdateAlarmPageScreen(
+                  screenIndex: Constants.ALARM_PAGE_ALARM_LIST_INDEX,
+                ),
+              ),
               child: SizedBox(
                 width: MediaQuery.of(context).size.width / 3,
                 child: Align(
@@ -65,20 +64,14 @@ class CancelOrSave extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(5))),
             child: TextButton(
-              onPressed: () {
-                alarmBloc.sink.add(
-                  SetAlarm(
-                      // minutes: this.minutes,
-                      // sunday: this.sunday,
-                      // monday: this.monday,
-                      // tuesday: this.tuesday,
-                      // wednesday: this.wednesday,
-                      // thursday: this.thursday,
-                      // friday: this.friday,
-                      // saturday: this.saturday,
-                      ),
+              onPressed: () async {
+                alarmTimeAndDayPickerBloc.eventSink.add(
+                  SetAlarm(),
                 );
-                Navigator.of(context).pop();
+                Future.delayed(
+                    Duration(milliseconds: 100),
+                    () => alarmBloc.eventSink.add(UpdateAlarmPageScreen(
+                        screenIndex: Constants.ALARM_PAGE_ALARM_LIST_INDEX)));
               },
               child: SizedBox(
                 width: MediaQuery.of(context).size.width / 3,

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:sleep/alarm-page/alarm_bloc.dart';
-import 'package:sleep/alarm-page/alarm_events.dart';
+import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_bloc.dart';
+import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_event.dart';
 
 class Day extends StatelessWidget {
   final String day;
-  final AlarmBloc alarmBloc;
-  final AlarmEvent updateDay;
+  final AlarmTimeAndDayPickerBloc alarmTimeAndDayPickerBloc;
+  final AlarmTimeAndDayPickerEvent dayToSetTo;
   Day({
     @required this.day,
-    @required this.alarmBloc,
-    @required this.updateDay,
+    @required this.alarmTimeAndDayPickerBloc,
+    @required this.dayToSetTo,
   });
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class Day extends StatelessWidget {
               day,
               style: TextStyle(fontSize: 15),
             ),
-            onPressed: () => this.alarmBloc.sink.add(updateDay),
+            onPressed: () => this.alarmTimeAndDayPickerBloc.eventSink.add(dayToSetTo),
             style: ElevatedButton.styleFrom(
               shape: CircleBorder(
                   side: BorderSide(

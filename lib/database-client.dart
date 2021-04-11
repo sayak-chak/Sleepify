@@ -49,7 +49,7 @@ class Client {
         "sunday": sunday ? 1 : 0,
         "monday": monday ? 1 : 0,
         "tuesday": tuesday ? 1 : 0,
-        "wednedsay": wednesday ? 1 : 0,
+        "wednesday": wednesday ? 1 : 0,
         "thursday": thursday ? 1 : 0,
         "friday": friday ? 1 : 0,
         "saturday": saturday ? 1 : 0

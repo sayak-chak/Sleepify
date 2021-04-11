@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:sleep/alarm-page/alarm_bloc.dart';
+import 'package:sleep/alarm/ALARM-BLOC/alarm_bloc.dart';
+import 'package:sleep/alarm/ALARM-BLOC/alarm_events.dart';
+import 'package:sleep/alarm/ALARM-LIST-BLOC/alarm_list_bloc.dart';
 import 'package:sleep/constants.dart';
 
 class AlarmListItem extends StatelessWidget {
   final int hh, mm;
+  final AlarmListBloc alarmListBloc;
   final AlarmBloc alarmBloc;
   final bool sunday, monday, tuesday, wednesday, thursday, friday, saturday;
 
@@ -11,6 +14,7 @@ class AlarmListItem extends StatelessWidget {
       {@required this.hh,
       @required this.mm,
       @required this.alarmBloc,
+      @required this.alarmListBloc,
       @required this.sunday,
       @required this.monday,
       @required this.tuesday,
@@ -44,9 +48,12 @@ class AlarmListItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               TextButton(
-                //TODO: implement
                 child: const Text('Cancel'),
-                onPressed: () {/* ... */},
+                onPressed: () async {
+                  await alarmListBloc.cancelAlarm(id: hh * 60 + mm);
+                  alarmBloc.eventSink.add(UpdateAlarmPageScreen(
+                      screenIndex: Constants.ALARM_PAGE_ALARM_LIST_INDEX));
+                },
               ),
               const SizedBox(width: 8),
               // TODO : uncomment and implement

@@ -1,14 +1,14 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sleep/alarm-page/alarm_bloc.dart';
-import 'package:sleep/alarm-page/alarm_events.dart';
+import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_bloc.dart';
+import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_event.dart';
 import 'package:sleep/constants.dart';
 
 class TimePicker extends StatelessWidget {
-  //TODO: change name
-  final AlarmBloc alarmBloc;
-  TimePicker({@required this.alarmBloc});
+  final AlarmTimeAndDayPickerBloc alarmTimeAndDayPickerBloc;
+  TimePicker({@required this.alarmTimeAndDayPickerBloc});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +26,7 @@ class TimePicker extends StatelessWidget {
                 backgroundColor: Colors.black54,
                 magnification: 1.15,
                 onSelectedItemChanged: (hr) =>
-                    alarmBloc.sink.add(SetHours(hours: hr)),
+                    alarmTimeAndDayPickerBloc.eventSink.add(SetHours(hours: hr)),
                 itemExtent: 50,
                 children: [...Constants.listOfHours],
               ),
@@ -58,7 +58,7 @@ class TimePicker extends StatelessWidget {
                 backgroundColor: Colors.black54,
                 magnification: 1.15,
                 onSelectedItemChanged: (min) =>
-                    alarmBloc.sink.add(SetMinutes(minutes: min)),
+                    alarmTimeAndDayPickerBloc.eventSink.add(SetMinutes(minutes: min)),
                 itemExtent: 50,
                 children: [...Constants.listOfMins],
               ),

@@ -44,10 +44,11 @@ class Constants {
   static const double MEDIUM_SIZE = 20;
   static const double LARGE_SIZE = 30;
 
-
   static const int ALARM_TIME_PICKER_INDEX = 3;
   static const int ALARM_PAGE_INDEX = 2;
-    static const int SLEEP_MUSIC_INDEX = 1;
+  static const int SLEEP_MUSIC_INDEX = 1;
   static const int HOME_PAGE_INDEX = 0;
 
+  static int ALARM_PAGE_ALARM_LIST_INDEX = 0;
+  static int ALARM_PAGE_ALARM_TIME_PICKER_INDEX = 1;
 }
