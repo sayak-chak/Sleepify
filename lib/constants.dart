@@ -1,8 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Constants {
+
   static final List<Text> listOfHours = new List<Text>.generate(
     24,
     (index) => index >= 10
@@ -51,4 +53,19 @@ class Constants {
 
   static int ALARM_PAGE_ALARM_LIST_INDEX = 0;
   static int ALARM_PAGE_ALARM_TIME_PICKER_INDEX = 1;
+
+  static const int NUMBER_OF_SLEEP_SONGS = 10;
+  static final MUSIC_FILE_CORRESPONDING_TO_ICON_INDEX =
+      List.generate(Constants.NUMBER_OF_SLEEP_SONGS, (index) {
+    if (index == 0) return "rain.mp3";
+    return "cough.mp3";
+  });
+
+  static final ICON_DATA_LIST =
+      List.generate(Constants.NUMBER_OF_SLEEP_SONGS, (index) {
+    if (index % 2 == 0) return FontAwesomeIcons.plus;
+    return FontAwesomeIcons.addressCard;
+  });
+
+  static const int MAX_NO_OF_CONCURRENT_SOUNDS = 2;
 }

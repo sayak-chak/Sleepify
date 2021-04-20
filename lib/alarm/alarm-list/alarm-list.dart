@@ -6,8 +6,8 @@ import 'package:sleep/alarm/ALARM-LIST-BLOC/alarm_list_bloc.dart';
 import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_bloc.dart';
 import 'package:sleep/alarm/alarm-list/alarm-list-item.dart';
 import 'package:sleep/constants.dart';
-import 'package:sleep/database-client.dart';
-import 'package:sleep/datatbase.dart';
+import 'package:sleep/database/database_alarm_client.dart';
+import 'package:sleep/database/datatbase.dart';
 
 class AlarmList extends StatelessWidget {
   final AlarmBloc alarmBloc;
@@ -68,8 +68,8 @@ class AlarmList extends StatelessWidget {
 
   Future<List<AlarmListItem>> _getListOfAlarms() async {
     List<AlarmListItem> listOfAlarms = [];
-    List<Client> listOfClients = await _alarmListBloc.listOfAlarmClients;
-    for (Client alarm in listOfClients) {
+    List<AlarmClient> listOfClients = await _alarmListBloc.listOfAlarmClients;
+    for (AlarmClient alarm in listOfClients) {
       listOfAlarms.add(AlarmListItem(
         alarmListBloc: _alarmListBloc,
         alarmBloc: alarmBloc,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sleep/constants.dart';
-import 'package:sleep/global_events.dart';
+import 'package:sleep/GLOBAL-BLOC/BOTTOM-NAV-BLOC/bottom_nav_event.dart';
 import 'package:sleep/main.dart';
 
 class SleepAppBottomNavigationBar extends StatefulWidget {
@@ -57,7 +57,7 @@ class SleepAppBottomNavigationBarState
         setState(() {
           activeScreenIndex = selectedPageIndex;
         });
-        GLOBAL_BLOC.appGlobalEventSink
+        GLOBAL_BOTTOM_NAV_BLOC.appGlobalEventSink
             .add(ChangeAppBody(updatedAppBodyIndex: selectedPageIndex));
       },
     );

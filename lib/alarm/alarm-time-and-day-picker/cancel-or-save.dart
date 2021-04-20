@@ -6,8 +6,8 @@ import 'package:sleep/alarm/ALARM-BLOC/alarm_events.dart';
 import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_bloc.dart';
 import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_event.dart';
 import 'package:sleep/constants.dart';
-import 'package:sleep/global_bloc.dart';
-import 'package:sleep/global_events.dart';
+import 'package:sleep/GLOBAL-BLOC/BOTTOM-NAV-BLOC/botton_nav_bloc.dart';
+import 'package:sleep/GLOBAL-BLOC/BOTTOM-NAV-BLOC/bottom_nav_event.dart';
 import 'package:sleep/main.dart';
 
 class CancelOrSave extends StatelessWidget {

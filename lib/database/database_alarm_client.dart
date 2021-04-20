@@ -3,17 +3,17 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-Client clientFromJson(String str) {
+AlarmClient clientFromJson(String str) {
   final jsonData = json.decode(str);
-  return Client.fromMap(jsonData);
+  return AlarmClient.fromMap(jsonData);
 }
 
-String clientToJson(Client data) {
+String clientToJson(AlarmClient data) {
   final dyn = data.toMap();
   return json.encode(dyn);
 }
 
-class Client {
+class AlarmClient {
   int minutes_id;
   bool sunday;
   bool monday;
@@ -23,7 +23,7 @@ class Client {
   bool friday;
   bool saturday;
 
-  Client(
+  AlarmClient(
       {@required this.minutes_id,
       @required this.sunday,
       @required this.monday,
@@ -33,7 +33,7 @@ class Client {
       @required this.friday,
       @required this.saturday});
 
-  factory Client.fromMap(Map<String, dynamic> json) => new Client(
+  factory AlarmClient.fromMap(Map<String, dynamic> json) => new AlarmClient(
         minutes_id: json["minutes_id"] as int,
         sunday: json["sunday"] == 1,
         monday: json["monday"] == 1,

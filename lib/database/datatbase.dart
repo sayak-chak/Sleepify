@@ -20,6 +20,9 @@ class DBProvider {
     String path = documentsDirectory.path + "SleepAppDB.db";
     return await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
+      await db.execute("CREATE TABLE SLEEP_MUSIC ("
+          "music_file_index INTEGER PRIMARY KEY"
+          ")");
       await db.execute("CREATE TABLE ALARM ("
           "minutes_id INTEGER PRIMARY KEY,"
           "sunday BIT,"

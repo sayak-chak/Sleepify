@@ -32,6 +32,8 @@ dependencies:
   flutter_glow: ^0.2.0
   sqflite: any
   path_provider: ^2.0.1
+  audioplayers: ^0.18.3
+  flutter_bloc: ^7.0.0
 
   google_fonts: 1.1.2
 
@@ -61,6 +63,8 @@ flutter:
     - images/moonlight.gif
     - images/moonlight.jpeg
     - images/full_moon.jpg
+    - assets/rain.mp3
+    - assets/cough.mp3
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

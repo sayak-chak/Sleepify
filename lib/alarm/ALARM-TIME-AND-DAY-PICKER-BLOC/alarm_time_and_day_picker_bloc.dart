@@ -3,8 +3,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:sleep/alarm/ALARM-BLOC/alarm_events.dart';
 import 'package:sleep/alarm/ALARM-DATA/alarm-data.dart';
 import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_event.dart';
-import 'package:sleep/database-client.dart';
-import 'package:sleep/datatbase.dart';
+import 'package:sleep/database/database_alarm_client.dart';
+import 'package:sleep/database/datatbase.dart';
 
 class AlarmTimeAndDayPickerBloc {
   AlarmData _alarmData;
@@ -30,7 +30,6 @@ class AlarmTimeAndDayPickerBloc {
   }
 
   AlarmTimeAndDayPickerBloc() {
-    print("UR CALLING ME CONST");
     _alarmData = AlarmData();
     _initializeWithDefaultValues();
     var initializationSettingsAndroid =
@@ -82,21 +81,6 @@ class AlarmTimeAndDayPickerBloc {
         friday: _friday,
         saturday: _saturday);
     _initializeWithDefaultValues();
-    print("Sunday = " +
-        _sunday.toString() +
-        "\nMonday =" +
-        _monday.toString() +
-        "\nTuesday =" +
-        _tuesday.toString() +
-        "\nWednesday =" +
-        _wednesday.toString() +
-        "\nThursday =" +
-        _thursday.toString() +
-        "\nFriday =" +
-        _friday.toString() +
-        "\nSaturday =" +
-        _saturday.toString() +
-        "\n");
   }
 
   Future<void> _showNotificationMediaStyle() async {

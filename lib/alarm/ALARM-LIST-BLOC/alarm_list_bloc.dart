@@ -1,5 +1,5 @@
 import 'package:sleep/alarm/ALARM-DATA/alarm-data.dart';
-import 'package:sleep/database-client.dart';
+import 'package:sleep/database/database_alarm_client.dart';
 
 class AlarmListBloc {
   AlarmData _alarmData;
@@ -7,7 +7,7 @@ class AlarmListBloc {
     _alarmData = AlarmData();
   }
 
-  Future<List<Client>> get listOfAlarmClients => _alarmData.getListOfAlarms();
+  Future<List<AlarmClient>> get listOfAlarmClients => _alarmData.getListOfAlarms();
 
   Future<void> cancelAlarm({int id}) async {
     await _alarmData.delete(minutesId: id);
