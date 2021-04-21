@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sleep/bottom-nav-bar/bloc/botton_nav_bloc.dart';
 import 'package:sleep/constants.dart';
-import 'package:sleep/GLOBAL-BLOC/BOTTOM-NAV-BLOC/bottom_nav_event.dart';
+import 'package:sleep/bottom-nav-bar/bloc/bottom_nav_event.dart';
 import 'package:sleep/main.dart';
 
 class SleepAppBottomNavigationBar extends StatefulWidget {
@@ -18,17 +20,17 @@ class SleepAppBottomNavigationBarState
       currentIndex: activeScreenIndex,
       backgroundColor: Color.fromRGBO(20, 10, 40, 1),
       items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          activeIcon: Icon(
-            FontAwesomeIcons.home,
-            color: Colors.red,
-          ),
-          icon: Icon(
-            FontAwesomeIcons.home,
-            color: Colors.white,
-          ),
-          label: '',
-        ),
+        // BottomNavigationBarItem(
+        //   activeIcon: Icon(
+        //     FontAwesomeIcons.home,
+        //     color: Colors.red,
+        //   ),
+        //   icon: Icon(
+        //     FontAwesomeIcons.home,
+        //     color: Colors.white,
+        //   ),
+        //   label: '',
+        // ),
         BottomNavigationBarItem(
           activeIcon: Icon(
             FontAwesomeIcons.music,
@@ -57,7 +59,7 @@ class SleepAppBottomNavigationBarState
         setState(() {
           activeScreenIndex = selectedPageIndex;
         });
-        GLOBAL_BOTTOM_NAV_BLOC.appGlobalEventSink
+        BlocProvider.of<BottomNavBarBloc>(context)
             .add(ChangeAppBody(updatedAppBodyIndex: selectedPageIndex));
       },
     );

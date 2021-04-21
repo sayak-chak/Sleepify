@@ -11,7 +11,9 @@ class AddOrRemoveSleepMusicIcon extends SleepMusicIconEvent {
   final PlayPauseButtonBloc playPauseButtonBloc;
   final ErrorBloc errorBloc;
   AddOrRemoveSleepMusicIcon(
-      {@required this.musicFileIndex, @required this.playPauseButtonBloc, this.errorBloc});
+      {@required this.musicFileIndex,
+      @required this.playPauseButtonBloc,
+      this.errorBloc});
 }
 
 class ChangeExistingSleepMusicIconColor extends SleepMusicIconEvent {

@@ -25,8 +25,9 @@ class TimePicker extends StatelessWidget {
                 looping: true,
                 backgroundColor: Colors.black54,
                 magnification: 1.15,
-                onSelectedItemChanged: (hr) =>
-                    alarmTimeAndDayPickerBloc.eventSink.add(SetHours(hours: hr)),
+                onSelectedItemChanged: (hr) => alarmTimeAndDayPickerBloc
+                    .eventSink
+                    .add(SetHours(hours: hr)),
                 itemExtent: 50,
                 children: [...Constants.listOfHours],
               ),
@@ -57,8 +58,9 @@ class TimePicker extends StatelessWidget {
                 looping: true,
                 backgroundColor: Colors.black54,
                 magnification: 1.15,
-                onSelectedItemChanged: (min) =>
-                    alarmTimeAndDayPickerBloc.eventSink.add(SetMinutes(minutes: min)),
+                onSelectedItemChanged: (min) => alarmTimeAndDayPickerBloc
+                    .eventSink
+                    .add(SetMinutes(minutes: min)),
                 itemExtent: 50,
                 children: [...Constants.listOfMins],
               ),

@@ -5,7 +5,7 @@ import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_pi
 import 'package:sleep/alarm/alarm-time-and-day-picker/cancel-or-save.dart';
 import 'package:sleep/alarm/alarm-time-and-day-picker/day-picker.dart';
 import 'package:sleep/alarm/alarm-time-and-day-picker/time-picker.dart';
-  
+
 class AlarmTimeAndDayPicker extends StatelessWidget {
   final AlarmBloc alarmBloc;
   final AlarmTimeAndDayPickerBloc alarmTimeAndDayPickerBloc;
@@ -24,12 +24,14 @@ class AlarmTimeAndDayPicker extends StatelessWidget {
       // alignment: Alignment.center,
       child: ListView(children: [
         TimePicker(
-          alarmTimeAndDayPickerBloc : alarmTimeAndDayPickerBloc,
+          alarmTimeAndDayPickerBloc: alarmTimeAndDayPickerBloc,
         ),
         WeekDayPicker(
-          alarmTimeAndDayPickerBloc : alarmTimeAndDayPickerBloc,
+          alarmTimeAndDayPickerBloc: alarmTimeAndDayPickerBloc,
         ),
-        CancelOrSave(alarmBloc: alarmBloc, alarmTimeAndDayPickerBloc : alarmTimeAndDayPickerBloc),
+        CancelOrSave(
+            alarmBloc: alarmBloc,
+            alarmTimeAndDayPickerBloc: alarmTimeAndDayPickerBloc),
       ]),
     );
   }

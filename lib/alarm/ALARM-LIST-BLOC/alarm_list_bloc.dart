@@ -7,7 +7,8 @@ class AlarmListBloc {
     _alarmData = AlarmData();
   }
 
-  Future<List<AlarmClient>> get listOfAlarmClients => _alarmData.getListOfAlarms();
+  Future<List<AlarmClient>> get listOfAlarmClients =>
+      _alarmData.getListOfAlarms();
 
   Future<void> cancelAlarm({int id}) async {
     await _alarmData.delete(minutesId: id);

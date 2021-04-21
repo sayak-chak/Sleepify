@@ -14,6 +14,5 @@ class LoadedSleepMusicFromDB extends SleepMusicIconState {
 
 class ChangedSleepMusicIconColor extends SleepMusicIconState {
   final HashSet<int> selectedIndexes;
-  ChangedSleepMusicIconColor(
-      {@required this.selectedIndexes});
+  ChangedSleepMusicIconColor({@required this.selectedIndexes});
 }

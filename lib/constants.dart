@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Constants {
-
   static final List<Text> listOfHours = new List<Text>.generate(
     24,
     (index) => index >= 10

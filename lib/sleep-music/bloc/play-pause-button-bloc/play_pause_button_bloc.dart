@@ -32,7 +32,6 @@ class PlayPauseButtonBloc
 
   Stream<PlayPauseButtonState> _changeMusicButton(
       SleepMusicIconBloc sleepMusicIconBloc, ErrorBloc errorBloc) async* {
-
     if (currentButton == FontAwesomeIcons.play) {
       List<SleepMusicIconClient> playList =
           await SleepMusicIconData().getPlayList();

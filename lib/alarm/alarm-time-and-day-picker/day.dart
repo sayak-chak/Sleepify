@@ -23,7 +23,8 @@ class Day extends StatelessWidget {
               day,
               style: TextStyle(fontSize: 15),
             ),
-            onPressed: () => this.alarmTimeAndDayPickerBloc.eventSink.add(dayToSetTo),
+            onPressed: () =>
+                this.alarmTimeAndDayPickerBloc.eventSink.add(dayToSetTo),
             style: ElevatedButton.styleFrom(
               shape: CircleBorder(
                   side: BorderSide(
