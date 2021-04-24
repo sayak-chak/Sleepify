@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:sleep/alarm/ALARM-BLOC/alarm_bloc.dart';
-import 'package:sleep/alarm/ALARM-BLOC/alarm_events.dart';
-import 'package:sleep/alarm/ALARM-LIST-BLOC/alarm_list_bloc.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:sleep/alarm/alarm-list/bloc/alarm_list_bloc.dart';
+import 'package:sleep/alarm/alarm-page/bloc/alarm_page_bloc.dart';
+import 'package:sleep/alarm/alarm-page/bloc/alarm_page_events.dart';
 import 'package:sleep/constants.dart';
 
 class AlarmListItem extends StatelessWidget {
   final int hh, mm;
   final AlarmListBloc alarmListBloc;
-  final AlarmBloc alarmBloc;
+  final AlarmPageBloc alarmPageBloc;
   final bool sunday, monday, tuesday, wednesday, thursday, friday, saturday;
 
   AlarmListItem(
       {@required this.hh,
       @required this.mm,
-      @required this.alarmBloc,
+      @required this.alarmPageBloc,
       @required this.alarmListBloc,
       @required this.sunday,
       @required this.monday,
@@ -24,6 +25,14 @@ class AlarmListItem extends StatelessWidget {
       @required this.saturday});
   @override
   Widget build(BuildContext context) {
+    String hrString = hh.toString();
+    String minString = mm.toString();
+    if (hrString.length < 2) {
+      hrString = "0" + hrString;
+    }
+    if (minString.length < 2) {
+      minString = "0" + minString;
+    }
     return Card(
       // color: Constants.DEFAULT_BUTTON_COLOR_NON_SOLID,
       child: Column(
@@ -31,18 +40,19 @@ class AlarmListItem extends StatelessWidget {
         children: <Widget>[
           ListTile(
             title: Text(
-              hh.toString() + " : " + mm.toString(),
+              hrString + " : " + minString,
               style: TextStyle(
                 fontSize: 40,
               ),
             ),
-            subtitle: Text((this.sunday ? " Sunday," : "") +
-                (this.monday ? " Monday," : "") +
-                (this.tuesday ? " Tuesday," : "") +
-                (this.wednesday ? " Wednesday," : "") +
-                (this.thursday ? " Thursday," : "") +
-                (this.friday ? " Friday," : "") +
-                (this.saturday ? " Saturday," : "")),
+            subtitle: Text("■" +
+                (this.sunday ? " Sunday ■" : "") +
+                (this.monday ? " Monday ■" : "") +
+                (this.tuesday ? " Tuesday ■" : "") +
+                (this.wednesday ? " Wednesday ■" : "") +
+                (this.thursday ? " Thursday ■" : "") +
+                (this.friday ? " Friday ■" : "") +
+                (this.saturday ? " Saturday ■" : "")),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -50,17 +60,13 @@ class AlarmListItem extends StatelessWidget {
               TextButton(
                 child: const Text('Cancel'),
                 onPressed: () async {
-                  await alarmListBloc.cancelAlarm(id: hh * 60 + mm);
-                  alarmBloc.eventSink.add(UpdateAlarmPageScreen(
+                  await FlutterLocalNotificationsPlugin().cancel(mm + hh * 60);
+                  await alarmListBloc.cancelAlarm(id: mm + hh * 60);
+                  alarmPageBloc.add(UpdateAlarmPageScreen(
                       screenIndex: Constants.ALARM_PAGE_ALARM_LIST_INDEX));
                 },
               ),
               const SizedBox(width: 8),
-              // TODO : uncomment and implement
-              // TextButton(
-              //   child: const Text('Edit'),
-              //   onPressed: () {/* ... */},
-              // ),
               const SizedBox(width: 8),
             ],
           ),

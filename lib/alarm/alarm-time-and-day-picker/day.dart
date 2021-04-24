@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_bloc.dart';
-import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_event.dart';
+import 'package:sleep/alarm/alarm-time-and-day-picker/bloc/alarm_time_and_day_picker_bloc.dart';
+import 'package:sleep/alarm/alarm-time-and-day-picker/bloc/alarm_time_and_day_picker_event.dart';
 
 class Day extends StatelessWidget {
   final String day;
@@ -23,8 +23,7 @@ class Day extends StatelessWidget {
               day,
               style: TextStyle(fontSize: 15),
             ),
-            onPressed: () =>
-                this.alarmTimeAndDayPickerBloc.eventSink.add(dayToSetTo),
+            onPressed: () => this.alarmTimeAndDayPickerBloc.add(dayToSetTo),
             style: ElevatedButton.styleFrom(
               shape: CircleBorder(
                   side: BorderSide(

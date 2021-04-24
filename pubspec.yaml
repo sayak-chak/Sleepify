@@ -34,7 +34,7 @@ dependencies:
   path_provider: ^2.0.1
   audioplayers: ^0.18.3
   flutter_bloc: ^7.0.0
-
+  flutter_native_timezone: ^1.0.10
   google_fonts: 1.1.2
 
 

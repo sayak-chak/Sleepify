@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sleep/alarm/ALARM-BLOC/alarm_bloc.dart';
-import 'package:sleep/alarm/ALARM-BLOC/alarm_events.dart';
-import 'package:sleep/alarm/ALARM-LIST-BLOC/alarm_list_bloc.dart';
-import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_bloc.dart';
 import 'package:sleep/alarm/alarm-list/alarm-list-item.dart';
+import 'package:sleep/alarm/alarm-list/bloc/alarm_list_bloc.dart';
+import 'package:sleep/alarm/alarm-page/bloc/alarm_page_bloc.dart';
+import 'package:sleep/alarm/alarm-page/bloc/alarm_page_events.dart';
 import 'package:sleep/constants.dart';
 import 'package:sleep/database/database_alarm_client.dart';
-import 'package:sleep/database/datatbase.dart';
 
 class AlarmList extends StatelessWidget {
-  final AlarmBloc alarmBloc;
+  final AlarmPageBloc alarmPageBloc;
   final AlarmListBloc _alarmListBloc = AlarmListBloc();
-  AlarmList({@required this.alarmBloc});
+  AlarmList({@required this.alarmPageBloc});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -57,7 +55,7 @@ class AlarmList extends StatelessWidget {
                   color: Colors.white,
                   size: 50,
                 ),
-                onPressed: () => alarmBloc.eventSink.add(UpdateAlarmPageScreen(
+                onPressed: () => alarmPageBloc.add(UpdateAlarmPageScreen(
                     screenIndex:
                         Constants.ALARM_PAGE_ALARM_TIME_PICKER_INDEX))),
           ),
@@ -72,7 +70,7 @@ class AlarmList extends StatelessWidget {
     for (AlarmClient alarm in listOfClients) {
       listOfAlarms.add(AlarmListItem(
         alarmListBloc: _alarmListBloc,
-        alarmBloc: alarmBloc,
+        alarmPageBloc: alarmPageBloc,
         hh: alarm.minutes_id ~/ 60,
         mm: alarm.minutes_id % 60,
         sunday: alarm.sunday,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:sleep/alarm/alarm-page.dart';
+import 'package:sleep/alarm/alarm-page/alarm-page.dart';
 import 'package:sleep/bottom-nav-bar/bloc/bottom_nav_event.dart';
 import 'package:sleep/bottom-nav-bar/bloc/botton_nav_bloc.dart';
 import 'package:sleep/bottom-nav-bar/bottom-navigaton-bar.dart';
@@ -37,7 +37,7 @@ class MainAppState extends State<MainApp> {
     bottomNavBarBloc = BottomNavBarBloc();
     APP_BODY_LIST = [
       SleepMusic(),
-      AlarmPage(),
+      AlarmScreen(),
     ];
   }
 

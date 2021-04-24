@@ -1,7 +1,6 @@
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_bloc.dart';
-import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_event.dart';
+import 'package:sleep/alarm/alarm-time-and-day-picker/bloc/alarm_time_and_day_picker_bloc.dart';
+import 'package:sleep/alarm/alarm-time-and-day-picker/bloc/alarm_time_and_day_picker_event.dart';
 import 'package:sleep/alarm/alarm-time-and-day-picker/day.dart';
 
 class WeekDayPicker extends StatelessWidget {

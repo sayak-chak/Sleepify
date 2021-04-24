@@ -1,4 +1,4 @@
-import 'package:sleep/alarm/ALARM-DATA/alarm-data.dart';
+import 'package:sleep/alarm/alarm-page/bloc/alarm_data.dart';
 import 'package:sleep/database/database_alarm_client.dart';
 
 class AlarmListBloc {

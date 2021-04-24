@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:sleep/alarm/ALARM-BLOC/alarm_bloc.dart';
-import 'package:sleep/alarm/ALARM-BLOC/alarm_events.dart';
-import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_bloc.dart';
-import 'package:sleep/alarm/ALARM-TIME-AND-DAY-PICKER-BLOC/alarm_time_and_day_picker_event.dart';
+import 'package:sleep/alarm/alarm-page/bloc/alarm_page_bloc.dart';
+import 'package:sleep/alarm/alarm-page/bloc/alarm_page_events.dart';
+import 'package:sleep/alarm/alarm-time-and-day-picker/bloc/alarm_time_and_day_picker_bloc.dart';
+import 'package:sleep/alarm/alarm-time-and-day-picker/bloc/alarm_time_and_day_picker_event.dart';
 import 'package:sleep/constants.dart';
-import 'package:sleep/bottom-nav-bar/bloc/botton_nav_bloc.dart';
-import 'package:sleep/bottom-nav-bar/bloc/bottom_nav_event.dart';
-import 'package:sleep/main.dart';
 
 class CancelOrSave extends StatelessWidget {
-  final AlarmBloc alarmBloc;
+  final AlarmPageBloc alarmPageBloc;
   final AlarmTimeAndDayPickerBloc alarmTimeAndDayPickerBloc;
 
   CancelOrSave(
-      {@required this.alarmBloc, @required this.alarmTimeAndDayPickerBloc});
+      {@required this.alarmPageBloc, @required this.alarmTimeAndDayPickerBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +30,7 @@ class CancelOrSave extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(5))),
             child: TextButton(
-              onPressed: () => alarmBloc.eventSink.add(
+              onPressed: () => alarmPageBloc.add(
                 UpdateAlarmPageScreen(
                   screenIndex: Constants.ALARM_PAGE_ALARM_LIST_INDEX,
                 ),
@@ -65,12 +62,12 @@ class CancelOrSave extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(5))),
             child: TextButton(
               onPressed: () async {
-                alarmTimeAndDayPickerBloc.eventSink.add(
+                alarmTimeAndDayPickerBloc.add(
                   SetAlarm(),
                 );
                 Future.delayed(
                     Duration(milliseconds: 100),
-                    () => alarmBloc.eventSink.add(UpdateAlarmPageScreen(
+                    () => alarmPageBloc.add(UpdateAlarmPageScreen(
                         screenIndex: Constants.ALARM_PAGE_ALARM_LIST_INDEX)));
               },
               child: SizedBox(
