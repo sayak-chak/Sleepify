@@ -11,7 +11,15 @@ class TimePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.transparent,
+      decoration: BoxDecoration(
+        // color: Colors.red,
+        border: Border.all(
+          color: Colors.white,
+        ),
+        borderRadius: BorderRadius.all(
+          Radius.circular(5),
+        ),
+      ),
       // margin: EdgeInsets.only(top: 50, left: 40, right: 40),
       // width: 300,
       child: Row(

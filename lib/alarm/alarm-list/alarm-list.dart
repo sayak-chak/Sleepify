@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sleep/alarm/alarm-list/alarm-list-item.dart';
@@ -13,53 +14,55 @@ class AlarmList extends StatelessWidget {
   AlarmList({@required this.alarmPageBloc});
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return CupertinoScrollbar(
+      // padding: EdgeInsets.only(top: 20),
       // alignment: Alignment.center,
-      child: Column(children: [
-        SizedBox(
-          height: MediaQuery.of(context).size.height / 2,
-          child: FutureBuilder(
-            builder: (context, alarmListSnap) {
-              if (alarmListSnap.connectionState == ConnectionState.none &&
-                  alarmListSnap.hasData == null) {
-                //reading from DB
-                return Container();
-              }
-              return ListView.builder(
-                itemCount:
-                    alarmListSnap.data != null ? alarmListSnap.data.length : 0,
-                itemBuilder: (context, index) {
-                  AlarmListItem alarm = alarmListSnap.data[index];
-                  return alarm;
-                },
-              );
-            },
-            future: _getListOfAlarms(),
+      child: ListView(children: [
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            // minHeight: 35.0,
+            maxHeight: (MediaQuery.of(context).size.height * 3) / 4,
+          ),
+          // height: (3 * MediaQuery.of(context).size.height) / 4,
+          child: Container(
+            child: FutureBuilder(
+              builder: (context, alarmListSnap) {
+                if (alarmListSnap.connectionState == ConnectionState.none &&
+                    alarmListSnap.hasData == null) {
+                  //reading from DB
+                  return Container();
+                }
+                return CupertinoScrollbar(
+                  thickness: 12,
+                  child: ListView.builder(
+                    // shrinkWrap: true,
+                    itemCount: alarmListSnap.data != null
+                        ? alarmListSnap.data.length
+                        : 0,
+                    itemBuilder: (context, index) {
+                      AlarmListItem alarm = alarmListSnap.data[index];
+                      return alarm;
+                    },
+                  ),
+                );
+              },
+              future: _getListOfAlarms(),
+            ),
           ),
         ),
-        Expanded(
-          child: Container(
-            padding: EdgeInsets.only(
-              bottom: 10,
+        Flexible(
+          child: TextButton(
+            child: Icon(
+              FontAwesomeIcons.plusCircle,
+              color: Colors.white,
+              size: 60,
             ),
-            alignment: Alignment.bottomCenter,
-            child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.black54),
-                  side: MaterialStateProperty.all(
-                    BorderSide(width: 3),
-                  ),
-                ),
-                child: Icon(
-                  FontAwesomeIcons.plus,
-                  color: Colors.white,
-                  size: 50,
-                ),
-                onPressed: () => alarmPageBloc.add(UpdateAlarmPageScreen(
-                    screenIndex:
-                        Constants.ALARM_PAGE_ALARM_TIME_PICKER_INDEX))),
+            onPressed: () => alarmPageBloc.add(
+              UpdateAlarmPageScreen(
+                  screenIndex: Constants.ALARM_PAGE_ALARM_TIME_PICKER_INDEX),
+            ),
           ),
-        )
+        ),
       ]),
     );
   }

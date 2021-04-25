@@ -86,6 +86,12 @@ class MainAppState extends State<MainApp> {
               image: DecorationImage(
                   image: AssetImage("images/moonlight.jpeg"), fit: BoxFit.fill),
             ),
+            padding: EdgeInsets.only(
+              top: 5,
+              bottom: 5,
+              left: 10,
+              right: 10,
+            ), //TODO: WHAT TO DO???
             child: BlocBuilder(
               bloc: bottomNavBarBloc,
               builder: (BuildContext context, state) {

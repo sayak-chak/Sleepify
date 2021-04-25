@@ -13,23 +13,38 @@ class SleepMusicIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(5),
-      color: color,
-      child: Column(children: [
-        IconButton(
-          icon: Icon(Constants.ICON_DATA_LIST[index]),
-          onPressed: () async {
-            BlocProvider.of<SleepMusicIconBloc>(context).add(
-              AddOrRemoveSleepMusicIcon(
-                musicFileIndex: index,
-                playPauseButtonBloc:
-                    BlocProvider.of<PlayPauseButtonBloc>(context),
-                errorBloc: BlocProvider.of<ErrorBloc>(context),
-              ),
-            );
-          },
-        ),
-      ]),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        // borderRadius: BorderRadius.all(
+        //   Radius.circular(18.0),
+        // ),
+        color: color,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.blueAccent,
+            spreadRadius: color == Colors.white ? 4 : 10,
+            blurRadius: color == Colors.white ? 4 : 10,
+          ),
+          BoxShadow(
+            color: Colors.blueAccent,
+            spreadRadius: color == Colors.white ? -4 : -10,
+            blurRadius: color == Colors.white ? 4 : 10,
+          )
+        ],
+      ),
+      child: IconButton(
+        icon: Icon(Constants.ICON_DATA_LIST[index]),
+        onPressed: () async {
+          BlocProvider.of<SleepMusicIconBloc>(context).add(
+            AddOrRemoveSleepMusicIcon(
+              musicFileIndex: index,
+              playPauseButtonBloc:
+                  BlocProvider.of<PlayPauseButtonBloc>(context),
+              errorBloc: BlocProvider.of<ErrorBloc>(context),
+            ),
+          );
+        },
+      ),
     );
   }
 }

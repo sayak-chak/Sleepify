@@ -17,6 +17,11 @@ class SleepAppBottomNavigationBarState
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      selectedIconTheme: IconThemeData(
+        // color: Colors.blue,
+        // opacity: 100,
+        size: 35,
+      ),
       currentIndex: activeScreenIndex,
       backgroundColor: Color.fromRGBO(20, 10, 40, 1),
       items: const <BottomNavigationBarItem>[
@@ -34,7 +39,7 @@ class SleepAppBottomNavigationBarState
         BottomNavigationBarItem(
           activeIcon: Icon(
             FontAwesomeIcons.music,
-            color: Colors.red,
+            color: Colors.blue,
           ),
           icon: Icon(
             FontAwesomeIcons.music,
@@ -45,7 +50,7 @@ class SleepAppBottomNavigationBarState
         BottomNavigationBarItem(
           activeIcon: Icon(
             FontAwesomeIcons.clock,
-            color: Colors.red,
+            color: Colors.blue,
           ),
           icon: Icon(
             FontAwesomeIcons.clock,
@@ -54,7 +59,7 @@ class SleepAppBottomNavigationBarState
           label: '',
         ),
       ],
-      selectedItemColor: Colors.amber[800],
+      selectedItemColor: Colors.white,
       onTap: (selectedPageIndex) {
         setState(() {
           activeScreenIndex = selectedPageIndex;

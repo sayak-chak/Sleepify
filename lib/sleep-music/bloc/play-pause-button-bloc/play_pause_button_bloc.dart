@@ -14,7 +14,7 @@ import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_ev
 
 class PlayPauseButtonBloc
     extends Bloc<PlayPauseButtonEvent, PlayPauseButtonState> {
-  IconData currentButton = FontAwesomeIcons.play;
+  IconData currentButton = FontAwesomeIcons.playCircle;
 
   PlayPauseButtonBloc() : super(null);
   PlayPauseButtonState get initialState => LoadingState();
@@ -32,19 +32,19 @@ class PlayPauseButtonBloc
 
   Stream<PlayPauseButtonState> _changeMusicButton(
       SleepMusicIconBloc sleepMusicIconBloc, ErrorBloc errorBloc) async* {
-    if (currentButton == FontAwesomeIcons.play) {
+    if (currentButton == FontAwesomeIcons.playCircle) {
       List<SleepMusicIconClient> playList =
           await SleepMusicIconData().getPlayList();
       if (playList == null || playList.length == 0) {
         errorBloc.add(NewError(errorMessage: "Please select a sound to play"));
       } else {
         sleepMusicIconBloc.add(PlayAllSounds());
-        currentButton = FontAwesomeIcons.pause;
+        currentButton = FontAwesomeIcons.pauseCircle;
         yield UpdatePlayPauseButton(newButton: this.currentButton);
       }
     } else {
       sleepMusicIconBloc.add(PauseAllSounds());
-      currentButton = FontAwesomeIcons.play;
+      currentButton = FontAwesomeIcons.playCircle;
       yield UpdatePlayPauseButton(newButton: this.currentButton);
     }
   }

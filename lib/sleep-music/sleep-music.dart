@@ -29,44 +29,44 @@ class SleepMusic extends StatelessWidget {
     return Stack(children: [
       Column(
         children: [
-          ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.black54),
-              side: MaterialStateProperty.all(
-                BorderSide(width: 3),
-              ),
-            ),
-            child: BlocBuilder(
-              bloc: _playPauseButtonBloc,
-              builder: (BuildContext context, PlayPauseButtonState state) {
-                if (state is UpdatePlayPauseButton) {
+          Padding(
+            padding: EdgeInsets.only(top: 20),
+            child: IconButton(
+              icon: BlocBuilder(
+                bloc: _playPauseButtonBloc,
+                builder: (BuildContext context, PlayPauseButtonState state) {
+                  if (state is UpdatePlayPauseButton) {
+                    return Icon(
+                      state.newButton,
+                      color: Colors.white,
+                      size: 50,
+                    );
+                  }
                   return Icon(
-                    state.newButton,
+                    FontAwesomeIcons.playCircle,
                     color: Colors.white,
                     size: 50,
                   );
-                }
-                return Icon(
-                  FontAwesomeIcons.play,
-                  color: Colors.white,
-                  size: 50,
-                );
+                },
+              ),
+              onPressed: () {
+                _playPauseButtonBloc.add(IntelligentlyUpdatePlayPauseButton(
+                    errorBloc: _errorBloc,
+                    sleepMusicIconBloc: _sleepMusicIconBloc));
               },
             ),
-            onPressed: () {
-              _playPauseButtonBloc.add(IntelligentlyUpdatePlayPauseButton(
-                  errorBloc: _errorBloc,
-                  sleepMusicIconBloc: _sleepMusicIconBloc));
-            },
           ),
-          Expanded(
+          Spacer(),
+          Flexible(
             child: Container(
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height / 2, bottom: 20),
+                  // top: MediaQuery.of(context).size.height / 4,
+                  bottom: 10),
               child: GridView.count(
+                padding: EdgeInsets.all(10),
                 mainAxisSpacing: 5,
                 crossAxisSpacing: 5,
-                crossAxisCount: 4,
+                crossAxisCount: 5,
                 children:
                     List.generate(Constants.NUMBER_OF_SLEEP_SONGS, (index) {
                   return BlocBuilder(
@@ -103,11 +103,11 @@ class SleepMusic extends StatelessWidget {
             Timer(Duration(seconds: 1), () {
               _errorBloc.add(RemoveError());
             });
-            return Center(child: ErrorDialog(errorMessage: state.errorMessage));
+            return ErrorDialog(errorMessage: state.errorMessage);
           }
           return Container();
         },
-      )
+      ),
     ]);
   }
 }

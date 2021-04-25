@@ -74,9 +74,9 @@ class SleepMusicIconBloc
       _noOfSoundsCurrentlyBeingPlayed--;
       if (_noOfSoundsCurrentlyBeingPlayed == 0) {
         _isPlayingMusic = false;
-        // _globalAppSleepMusicButtonStateController.add(FontAwesomeIcons.play);
-        playPauseButtonBloc
-            .add(HardUpdatePlayPauseButton(newButton: FontAwesomeIcons.play));
+        // _globalAppSleepMusicButtonStateController.add(FontAwesomeIcons.playCircle);
+        playPauseButtonBloc.add(
+            HardUpdatePlayPauseButton(newButton: FontAwesomeIcons.playCircle));
       }
     } else if (_noOfSoundsCurrentlyBeingPlayed ==
         Constants.MAX_NO_OF_CONCURRENT_SOUNDS) {
@@ -96,11 +96,11 @@ class SleepMusicIconBloc
 
       if (_noOfSoundsCurrentlyBeingPlayed == 1) {
         _isPlayingMusic = true;
-        // _globalAppSleepMusicButtonStateController.add(FontAwesomeIcons.pause);
+        // _globalAppSleepMusicButtonStateController.add(FontAwesomeIcons.pauseCircle);
         _playListMap[musicFileIndex].resume();
-        playPauseButtonBloc
-            .add(HardUpdatePlayPauseButton(newButton: FontAwesomeIcons.pause));
-        // yield UpdatePlayPauseButton(newButton: FontAwesomeIcons.pause);
+        playPauseButtonBloc.add(
+            HardUpdatePlayPauseButton(newButton: FontAwesomeIcons.pauseCircle));
+        // yield UpdatePlayPauseButton(newButton: FontAwesomeIcons.pauseCircle);
       }
       if (_isPlayingMusic) {
         _resumeOrPlayAllSoundsThatAreNotPlaying();

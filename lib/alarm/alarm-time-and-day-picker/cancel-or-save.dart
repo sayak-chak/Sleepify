@@ -26,7 +26,7 @@ class CancelOrSave extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.red,
                 border: Border.all(
-                  color: Colors.red,
+                  color: Colors.white,
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(5))),
             child: TextButton(
@@ -57,7 +57,7 @@ class CancelOrSave extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.red,
                 border: Border.all(
-                  color: Colors.red,
+                  color: Colors.white,
                 ),
                 borderRadius: BorderRadius.all(Radius.circular(5))),
             child: TextButton(

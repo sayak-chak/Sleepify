@@ -34,6 +34,10 @@ class AlarmListItem extends StatelessWidget {
       minString = "0" + minString;
     }
     return Card(
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
       // color: Constants.DEFAULT_BUTTON_COLOR_NON_SOLID,
       child: Column(
         mainAxisSize: MainAxisSize.min,
