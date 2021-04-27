@@ -61,7 +61,7 @@ class MainAppState extends State<MainApp> {
       supportedLocales: [
         const Locale('en', ''),
       ],
-      title: 'Flutter Demo',
+      title: '',
       home: MultiBlocProvider(
         providers: [
           BlocProvider<PlayPauseButtonBloc>(
@@ -86,9 +86,15 @@ class MainAppState extends State<MainApp> {
               image: DecorationImage(
                   image: AssetImage("images/moonlight.jpeg"), fit: BoxFit.fill),
             ),
+            margin: EdgeInsets.only(
+              top: 10,
+              bottom: 10,
+              left: 10,
+              right: 10,
+            ),
             padding: EdgeInsets.only(
-              top: 5,
-              bottom: 5,
+              top: 40,
+              bottom: 40,
               left: 10,
               right: 10,
             ), //TODO: WHAT TO DO???

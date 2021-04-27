@@ -46,6 +46,7 @@ class SleepMusicIconBloc
     List<SleepMusicIconClient> playList =
         await SleepMusicIconData().getPlayList();
     await _mapPlayList(playList);
+    print("Loading from DB"+playList.toString());
     yield LoadedSleepMusicFromDB(playList: playList);
   }
 

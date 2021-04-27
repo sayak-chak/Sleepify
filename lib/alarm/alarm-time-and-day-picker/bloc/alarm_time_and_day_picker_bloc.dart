@@ -108,7 +108,7 @@ class AlarmTimeAndDayPickerBloc extends Bloc<AlarmTimeAndDayPickerEvent, void> {
         .cancel(id); //cancelling just in case there already exits one
     tz.TZDateTime scheduledDate = await _nextInstanceOfAllowedDayAndTime();
     _flutterLocalNotificationsPlugin.zonedSchedule(
-        id, "title", "body", scheduledDate, platformChannelSpecifics,
+        id, "", "Alarm!", scheduledDate, platformChannelSpecifics,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.wallClockTime,
         androidAllowWhileIdle: true,

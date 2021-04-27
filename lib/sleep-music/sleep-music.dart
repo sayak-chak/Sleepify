@@ -29,34 +29,7 @@ class SleepMusic extends StatelessWidget {
     return Stack(children: [
       Column(
         children: [
-          Padding(
-            padding: EdgeInsets.only(top: 20),
-            child: IconButton(
-              icon: BlocBuilder(
-                bloc: _playPauseButtonBloc,
-                builder: (BuildContext context, PlayPauseButtonState state) {
-                  if (state is UpdatePlayPauseButton) {
-                    return Icon(
-                      state.newButton,
-                      color: Colors.white,
-                      size: 50,
-                    );
-                  }
-                  return Icon(
-                    FontAwesomeIcons.playCircle,
-                    color: Colors.white,
-                    size: 50,
-                  );
-                },
-              ),
-              onPressed: () {
-                _playPauseButtonBloc.add(IntelligentlyUpdatePlayPauseButton(
-                    errorBloc: _errorBloc,
-                    sleepMusicIconBloc: _sleepMusicIconBloc));
-              },
-            ),
-          ),
-          Spacer(),
+          // Spacer(),
           Flexible(
             child: Container(
               padding: EdgeInsets.only(
@@ -66,7 +39,7 @@ class SleepMusic extends StatelessWidget {
                 padding: EdgeInsets.all(10),
                 mainAxisSpacing: 5,
                 crossAxisSpacing: 5,
-                crossAxisCount: 5,
+                crossAxisCount: MediaQuery.of(context).size.height > MediaQuery.of(context).size.width ? 5 : 10,
                 children:
                     List.generate(Constants.NUMBER_OF_SLEEP_SONGS, (index) {
                   return BlocBuilder(
@@ -92,6 +65,33 @@ class SleepMusic extends StatelessWidget {
                       });
                 }),
               ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 20),
+            child: TextButton(
+              child: BlocBuilder(
+                bloc: _playPauseButtonBloc,
+                builder: (BuildContext context, PlayPauseButtonState state) {
+                  if (state is UpdatePlayPauseButton) {
+                    return Icon(
+                      state.newButton,
+                      color: Colors.white,
+                      size: 60,
+                    );
+                  }
+                  return Icon(
+                    FontAwesomeIcons.playCircle,
+                    color: Colors.white,
+                    size: 60,
+                  );
+                },
+              ),
+              onPressed: () {
+                _playPauseButtonBloc.add(IntelligentlyUpdatePlayPauseButton(
+                    errorBloc: _errorBloc,
+                    sleepMusicIconBloc: _sleepMusicIconBloc));
+              },
             ),
           ),
         ],

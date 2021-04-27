@@ -17,13 +17,8 @@ class AlarmList extends StatelessWidget {
     return CupertinoScrollbar(
       // padding: EdgeInsets.only(top: 20),
       // alignment: Alignment.center,
-      child: ListView(children: [
-        ConstrainedBox(
-          constraints: BoxConstraints(
-            // minHeight: 35.0,
-            maxHeight: (MediaQuery.of(context).size.height * 3) / 4,
-          ),
-          // height: (3 * MediaQuery.of(context).size.height) / 4,
+      child: Column(children: [
+        Flexible(
           child: Container(
             child: FutureBuilder(
               builder: (context, alarmListSnap) {
@@ -34,15 +29,21 @@ class AlarmList extends StatelessWidget {
                 }
                 return CupertinoScrollbar(
                   thickness: 12,
-                  child: ListView.builder(
-                    // shrinkWrap: true,
-                    itemCount: alarmListSnap.data != null
-                        ? alarmListSnap.data.length
-                        : 0,
-                    itemBuilder: (context, index) {
-                      AlarmListItem alarm = alarmListSnap.data[index];
-                      return alarm;
-                    },
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: 0,
+                      // maxHeight: (MediaQuery.of(context).size.height * 3) / 4,
+                    ),
+                    child: ListView.builder(
+                      // shrinkWrap: true,
+                      itemCount: alarmListSnap.data != null
+                          ? alarmListSnap.data.length
+                          : 0,
+                      itemBuilder: (context, index) {
+                        AlarmListItem alarm = alarmListSnap.data[index];
+                        return alarm;
+                      },
+                    ),
                   ),
                 );
               },
@@ -50,8 +51,14 @@ class AlarmList extends StatelessWidget {
             ),
           ),
         ),
-        Flexible(
+        Center(
           child: TextButton(
+            // style: TextButton.styleFrom(
+            //   shadowColor: Colors.white,
+            //   primary: Colors.purple,
+            //   backgroundColor: Colors.white,
+            //   textStyle: TextStyle(fontSize: 24, fontStyle: FontStyle.italic),
+            // ),
             child: Icon(
               FontAwesomeIcons.plusCircle,
               color: Colors.white,
