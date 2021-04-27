@@ -2,7 +2,6 @@ import 'dart:collection';
 
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sleep/constants.dart';
@@ -46,7 +45,7 @@ class SleepMusicIconBloc
     List<SleepMusicIconClient> playList =
         await SleepMusicIconData().getPlayList();
     await _mapPlayList(playList);
-    print("Loading from DB"+playList.toString());
+    print("Loading from DB" + playList.toString());
     yield LoadedSleepMusicFromDB(playList: playList);
   }
 
@@ -57,7 +56,7 @@ class SleepMusicIconBloc
       AudioPlayer audioPlayer = await _player.loop(
           Constants.MUSIC_FILE_CORRESPONDING_TO_ICON_INDEX[
               sleepMusicClient.musicFileIndex]);
-      audioPlayer.pause();
+      await audioPlayer.pause();
       _playListMap[sleepMusicClient.musicFileIndex] = audioPlayer;
     }
   }
@@ -72,40 +71,59 @@ class SleepMusicIconBloc
       //
       SleepMusicIconData().delete(musicFileIndex: musicFileIndex);
       //
-      _noOfSoundsCurrentlyBeingPlayed--;
-      if (_noOfSoundsCurrentlyBeingPlayed == 0) {
+      // _noOfSoundsCurrentlyBeingPlayed--;
+      // if (_noOfSoundsCurrentlyBeingPlayed == 0) {
+      //   _isPlayingMusic = false;
+      //   // _globalAppSleepMusicButtonStateController.add(FontAwesomeIcons.playCircle);
+      //   playPauseButtonBloc.add(
+      //       HardUpdatePlayPauseButton(newButton: FontAwesomeIcons.playCircle));
+      // }
+      if (_playListMap.isEmpty) {
         _isPlayingMusic = false;
         // _globalAppSleepMusicButtonStateController.add(FontAwesomeIcons.playCircle);
         playPauseButtonBloc.add(
             HardUpdatePlayPauseButton(newButton: FontAwesomeIcons.playCircle));
       }
-    } else if (_noOfSoundsCurrentlyBeingPlayed ==
+    } 
+    // else if (_noOfSoundsCurrentlyBeingPlayed ==
+    //     Constants.MAX_NO_OF_CONCURRENT_SOUNDS) {
+    //   errorBloc.add(NewError(
+    //       errorMessage: "Only " +
+    //           Constants.MAX_NO_OF_CONCURRENT_SOUNDS.toString() +
+    //           " sounds can be played at once"));
+    // } 
+    else if (_playListMap.length ==
         Constants.MAX_NO_OF_CONCURRENT_SOUNDS) {
       errorBloc.add(NewError(
           errorMessage: "Only " +
               Constants.MAX_NO_OF_CONCURRENT_SOUNDS.toString() +
               " sounds can be played at once"));
-    } else {
+    } 
+    else {
       //add sound
-      _noOfSoundsCurrentlyBeingPlayed++;
+      // _noOfSoundsCurrentlyBeingPlayed++;
       SleepMusicIconData().add(musicFileIndex: musicFileIndex);
       _playListMap[musicFileIndex] = await _player.loop(
           Constants.MUSIC_FILE_CORRESPONDING_TO_ICON_INDEX[musicFileIndex]);
-      _playListMap[musicFileIndex].pause();
+      await _playListMap[musicFileIndex].pause();
       yield ChangedSleepMusicIconColor(
           selectedIndexes: HashSet<int>.from(_playListMap.keys));
 
-      if (_noOfSoundsCurrentlyBeingPlayed == 1) {
-        _isPlayingMusic = true;
-        // _globalAppSleepMusicButtonStateController.add(FontAwesomeIcons.pauseCircle);
-        _playListMap[musicFileIndex].resume();
-        playPauseButtonBloc.add(
-            HardUpdatePlayPauseButton(newButton: FontAwesomeIcons.pauseCircle));
-        // yield UpdatePlayPauseButton(newButton: FontAwesomeIcons.pauseCircle);
-      }
-      if (_isPlayingMusic) {
-        _resumeOrPlayAllSoundsThatAreNotPlaying();
-      }
+      // if (_noOfSoundsCurrentlyBeingPlayed == 1) {
+      //   _isPlayingMusic = true;
+      //   // _globalAppSleepMusicButtonStateController.add(FontAwesomeIcons.pauseCircle);
+      //   _playListMap[musicFileIndex].resume();
+      //   playPauseButtonBloc.add(
+      //       HardUpdatePlayPauseButton(newButton: FontAwesomeIcons.pauseCircle));
+      //   // yield UpdatePlayPauseButton(newButton: FontAwesomeIcons.pauseCircle);
+      // }
+      // if (_isPlayingMusic) {
+      //   _resumeOrPlayAllSoundsThatAreNotPlaying();
+      // }
+
+      playPauseButtonBloc.add(
+          HardUpdatePlayPauseButton(newButton: FontAwesomeIcons.pauseCircle));
+      await _resumeOrPlayAllSoundsThatAreNotPlaying();
     }
   }
 

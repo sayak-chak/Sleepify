@@ -27,22 +27,39 @@ class AlarmList extends StatelessWidget {
                   //reading from DB
                   return Container();
                 }
-                return CupertinoScrollbar(
-                  thickness: 12,
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minHeight: 0,
-                      // maxHeight: (MediaQuery.of(context).size.height * 3) / 4,
+                if (alarmListSnap.data == null ||
+                    !alarmListSnap.hasData ||
+                    alarmListSnap.data.length == 0) {
+                  return Container();
+                }
+                return Container(
+                  decoration: BoxDecoration(
+                    // color: Colors.red,
+                    border: Border.all(
+                      color: Colors.white,
                     ),
-                    child: ListView.builder(
-                      // shrinkWrap: true,
-                      itemCount: alarmListSnap.data != null
-                          ? alarmListSnap.data.length
-                          : 0,
-                      itemBuilder: (context, index) {
-                        AlarmListItem alarm = alarmListSnap.data[index];
-                        return alarm;
-                      },
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(5),
+                    ),
+                  ),
+                  child: CupertinoScrollbar(
+                    isAlwaysShown: true,
+                    thickness: 12,
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minHeight: 0,
+                        // maxHeight: (MediaQuery.of(context).size.height * 3) / 4,
+                      ),
+                      child: ListView.builder(
+                        // shrinkWrap: true,
+                        itemCount: alarmListSnap.data != null
+                            ? alarmListSnap.data.length
+                            : 0,
+                        itemBuilder: (context, index) {
+                          AlarmListItem alarm = alarmListSnap.data[index];
+                          return alarm;
+                        },
+                      ),
                     ),
                   ),
                 );
