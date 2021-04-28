@@ -26,3 +26,8 @@ class ChangeExistingSleepMusicIconColor extends SleepMusicIconEvent {
 class PlayAllSounds extends SleepMusicIconEvent {}
 
 class PauseAllSounds extends SleepMusicIconEvent {}
+
+class UpdateSleepMusicTypeList extends SleepMusicIconEvent {
+  final String sleepMusicListType;
+  UpdateSleepMusicTypeList({@required this.sleepMusicListType});
+}

@@ -15,15 +15,20 @@ String clientToJson(SleepMusicIconClient data) {
 
 class SleepMusicIconClient {
   int musicFileIndex;
+  int musicTypeIndex;
 
   SleepMusicIconClient({
+    @required this.musicTypeIndex,
     @required this.musicFileIndex,
   });
 
   factory SleepMusicIconClient.fromMap(Map<String, dynamic> json) =>
-      new SleepMusicIconClient(musicFileIndex: json["music_file_index"] as int);
+      new SleepMusicIconClient(
+          musicTypeIndex: json["music_type_index"] as int,
+          musicFileIndex: json["music_file_index"] as int);
 
   Map<String, dynamic> toMap() => {
+        "music_type_index": musicTypeIndex,
         "music_file_index": musicFileIndex,
       };
 }

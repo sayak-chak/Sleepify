@@ -16,16 +16,23 @@ class SleepMusicIconData {
     return listOfClients;
   }
 
-  Future<void> delete({@required int musicFileIndex}) async {
+  Future<void> delete(
+      {@required int musicTypeIndex, @required int musicFileIndex}) async {
     final db = await DBProvider.db.database;
 
-    await db.delete("SLEEP_MUSIC",
-        where: "music_file_index = " + musicFileIndex.toString());
+    await db.rawDelete("DELETE FROM SLEEP_MUSIC WHERE music_type_index = " +
+        musicTypeIndex.toString() +
+        " AND music_file_index = " +
+        musicFileIndex.toString());
   }
 
-  Future<void> add({@required int musicFileIndex}) async {
+  Future<void> add(
+      {@required int musicTypeIndex, @required int musicFileIndex}) async {
     final db = await DBProvider.db.database;
 
-    await db.insert("SLEEP_MUSIC", {"music_file_index": musicFileIndex});
+    await db.insert("SLEEP_MUSIC", {
+      "music_type_index": musicTypeIndex,
+      "music_file_index": musicFileIndex
+    });
   }
 }

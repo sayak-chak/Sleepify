@@ -5,8 +5,9 @@ import 'package:sleep/constants.dart';
 import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_bloc.dart';
 import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_state.dart';
 import 'package:sleep/sleep-music/sleep-music-icon.dart';
+import 'package:sleep/utils/pair_for_sleep_music.dart';
 
-class SleepMusicListFor extends StatelessWidget {
+class SleepMusicList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SleepMusicIconBloc _sleepMusicIconBloc;
@@ -28,21 +29,41 @@ class SleepMusicListFor extends StatelessWidget {
                   MediaQuery.of(context).size.width
               ? 5
               : 10,
-          children: List.generate(Constants.NUMBER_OF_SLEEP_SONGS, (index) {
+          children: List.generate(Constants.NUMBER_OF_SLEEP_SONGS_IN_EACH_GROUP,
+              (index) {
             return BlocBuilder(
                 bloc: _sleepMusicIconBloc,
                 builder: (BuildContext context, SleepMusicIconState state) {
                   if (state is LoadedSleepMusicFromDB) {
                     return SleepMusicIcon(
+                      sleepMusicType: state.sleepMusicTypeIndex, //TODO : change
                       index: index,
-                      color: state.playList.contains(index)
+                      color: state.selectedMusicIndexPairSet.contains(
+                              PairForSleepMusic(
+                                  musicTypeIndex: state.sleepMusicTypeIndex,
+                                  musicFileIndex: index))
                           ? Colors.red
                           : Colors.white,
                     );
                   } else if (state is ChangedSleepMusicIconColor) {
                     return SleepMusicIcon(
+                      sleepMusicType: state.sleepMusicTypeIndex, //TODO : change
                       index: index,
-                      color: state.selectedIndexes.contains(index)
+                      color: state.selectedMusicIndexPairSet.contains(
+                              PairForSleepMusic(
+                                  musicTypeIndex: state.sleepMusicTypeIndex,
+                                  musicFileIndex: index))
+                          ? Colors.red
+                          : Colors.white,
+                    );
+                  } else if (state is UpdatedSleepMusicTypeList) {
+                    return SleepMusicIcon(
+                      sleepMusicType: state.sleepMusicTypeIndex, //TODO : change
+                      index: index,
+                      color: state.selectedMusicIndexPairSet.contains(
+                              PairForSleepMusic(
+                                  musicTypeIndex: state.sleepMusicTypeIndex,
+                                  musicFileIndex: index))
                           ? Colors.red
                           : Colors.white,
                     );

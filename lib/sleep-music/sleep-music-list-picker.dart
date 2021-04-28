@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_bloc.dart';
+import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_event.dart';
 
 class SleepMusicListPickers extends StatefulWidget {
   // final String selectedSleepMusicType;
@@ -75,6 +78,11 @@ class SleepMusicListPicker extends StatelessWidget {
         ),
         onPressed: () {
           updateSelectedSleepMusicType(typeOfMusicList);
+          BlocProvider.of<SleepMusicIconBloc>(context).add(
+            UpdateSleepMusicTypeList(
+              sleepMusicListType: typeOfMusicList,
+            ),
+          );
         },
         child: Text(
           typeOfMusicList,

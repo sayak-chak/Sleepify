@@ -16,7 +16,7 @@ import 'package:sleep/sleep-music/bloc/play-pause-button-bloc/play_pause_button_
 import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_bloc.dart';
 import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_state.dart';
 import 'package:sleep/sleep-music/sleep-music-icon.dart';
-import 'package:sleep/sleep-music/sleep-music-list-for.dart';
+import 'package:sleep/sleep-music/sleep-music-list.dart';
 import 'package:sleep/sleep-music/sleep-music-list-picker.dart';
 
 class SleepMusic extends StatelessWidget {
@@ -33,7 +33,7 @@ class SleepMusic extends StatelessWidget {
       Column(
         children: [
           SleepMusicListPickers(),
-          SleepMusicListFor(),
+          SleepMusicList(),
           Padding(
             padding: EdgeInsets.only(top: 20),
             child: TextButton(

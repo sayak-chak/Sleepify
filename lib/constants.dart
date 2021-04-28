@@ -53,18 +53,41 @@ class Constants {
   static int ALARM_PAGE_ALARM_LIST_INDEX = 0;
   static int ALARM_PAGE_ALARM_TIME_PICKER_INDEX = 1;
 
-  static const int NUMBER_OF_SLEEP_SONGS = 10;
-  static final MUSIC_FILE_CORRESPONDING_TO_ICON_INDEX =
-      List.generate(Constants.NUMBER_OF_SLEEP_SONGS, (index) {
-    if (index == 0) return "rain.mp3";
-    return "cough.mp3";
-  });
+  static const int NUMBER_OF_SLEEP_SONGS_IN_EACH_GROUP = 10;
 
-  static final ICON_DATA_LIST =
-      List.generate(Constants.NUMBER_OF_SLEEP_SONGS, (index) {
-    if (index % 2 == 0) return FontAwesomeIcons.plus;
-    return FontAwesomeIcons.addressCard;
-  });
+  static const int SLEEP_MUSIC_TYPE_NATURE = 0;
+  static const int SLEEP_MUSIC_TYPE_MECHANICAL = 1;
+  static const int SLEEP_MUSIC_TYPE_PLANETARY = 2;
+
+  static final MUSIC_FILE_CORRESPONDING_TO_ICON_INDEX = [
+    List.generate(Constants.NUMBER_OF_SLEEP_SONGS_IN_EACH_GROUP, (index) {
+      if (index == 0) return "rain.mp3";
+      return "cough.mp3";
+    }),
+    List.generate(Constants.NUMBER_OF_SLEEP_SONGS_IN_EACH_GROUP, (index) {
+      if (index == 0) return "rain.mp3";
+      return "cough.mp3";
+    }),
+    List.generate(Constants.NUMBER_OF_SLEEP_SONGS_IN_EACH_GROUP, (index) {
+      if (index == 0) return "rain.mp3";
+      return "cough.mp3";
+    })
+  ]; //TODO : 2D array tightly coupled with icon data list
+
+  static final ICON_DATA_LIST = [
+    List.generate(Constants.NUMBER_OF_SLEEP_SONGS_IN_EACH_GROUP, (index) {
+      if (index % 2 == 0) return FontAwesomeIcons.plus;
+      return FontAwesomeIcons.addressCard;
+    }),
+    List.generate(Constants.NUMBER_OF_SLEEP_SONGS_IN_EACH_GROUP, (index) {
+      if (index % 2 == 0) return FontAwesomeIcons.minus;
+      return FontAwesomeIcons.addressCard;
+    }),
+    List.generate(Constants.NUMBER_OF_SLEEP_SONGS_IN_EACH_GROUP, (index) {
+      if (index % 2 == 0) return FontAwesomeIcons.addressBook;
+      return FontAwesomeIcons.addressCard;
+    })
+  ];
 
   static const int MAX_NO_OF_CONCURRENT_SOUNDS = 2;
 }

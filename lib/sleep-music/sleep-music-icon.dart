@@ -8,8 +8,13 @@ import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_ev
 
 class SleepMusicIcon extends StatelessWidget {
   final int index;
+  final int sleepMusicType;
   final Color color;
-  SleepMusicIcon({@required this.index, @required this.color});
+  SleepMusicIcon({
+    @required this.index,
+    @required this.color,
+    @required this.sleepMusicType,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +38,7 @@ class SleepMusicIcon extends StatelessWidget {
         ],
       ),
       child: IconButton(
-        icon: Icon(Constants.ICON_DATA_LIST[index]),
+        icon: Icon(Constants.ICON_DATA_LIST[sleepMusicType][index]),
         onPressed: () async {
           BlocProvider.of<SleepMusicIconBloc>(context).add(
             AddOrRemoveSleepMusicIcon(
