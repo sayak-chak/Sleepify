@@ -67,7 +67,6 @@ class SleepMusicIconBloc
     List<SleepMusicIconClient> playList =
         await SleepMusicIconData().getPlayList();
     await _mapPlayList(playList);
-    print("Loading from DB" + playList.toString());
     yield LoadedSleepMusicFromDB(
         selectedMusicIndexPairSet:
             HashSet<PairForSleepMusic>.from(_playListMap.keys));
@@ -112,8 +111,7 @@ class SleepMusicIconBloc
         playPauseButtonBloc.add(
             HardUpdatePlayPauseButton(newButton: FontAwesomeIcons.playCircle));
       }
-    }
-    else if (_playListMap.length == Constants.MAX_NO_OF_CONCURRENT_SOUNDS) {
+    } else if (_playListMap.length == Constants.MAX_NO_OF_CONCURRENT_SOUNDS) {
       errorBloc.add(NewError(
           errorMessage: "Only " +
               Constants.MAX_NO_OF_CONCURRENT_SOUNDS.toString() +
@@ -137,7 +135,6 @@ class SleepMusicIconBloc
           sleepMusicTypeIndex: _currentSleepMusicTypeIndex,
           selectedMusicIndexPairSet:
               HashSet<PairForSleepMusic>.from(_playListMap.keys));
-
 
       playPauseButtonBloc.add(
           HardUpdatePlayPauseButton(newButton: FontAwesomeIcons.pauseCircle));

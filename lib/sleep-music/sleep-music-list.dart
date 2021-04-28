@@ -13,7 +13,8 @@ class SleepMusicList extends StatelessWidget {
     SleepMusicIconBloc _sleepMusicIconBloc;
     _sleepMusicIconBloc = BlocProvider.of<SleepMusicIconBloc>(context);
     return Flexible(
-      child: Container(
+      flex: 3,
+          child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: Colors.white),
           borderRadius: BorderRadius.circular(5),
@@ -27,8 +28,8 @@ class SleepMusicList extends StatelessWidget {
           crossAxisSpacing: 5,
           crossAxisCount: MediaQuery.of(context).size.height >
                   MediaQuery.of(context).size.width
-              ? 5
-              : 10,
+              ? 4
+              : 8,
           children: List.generate(Constants.NUMBER_OF_SLEEP_SONGS_IN_EACH_GROUP,
               (index) {
             return BlocBuilder(

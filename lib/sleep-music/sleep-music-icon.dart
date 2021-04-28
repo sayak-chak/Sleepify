@@ -18,11 +18,15 @@ class SleepMusicIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.all(5),
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        // borderRadius: BorderRadius.all(
-        //   Radius.circular(18.0),
-        // ),
+        border: Border.all(
+          color: Colors.redAccent,
+        ),
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.all(
+          Radius.circular(14.0),
+        ),
         color: color,
         boxShadow: [
           BoxShadow(
@@ -37,18 +41,28 @@ class SleepMusicIcon extends StatelessWidget {
           )
         ],
       ),
-      child: IconButton(
-        icon: Icon(Constants.ICON_DATA_LIST[sleepMusicType][index]),
-        onPressed: () async {
-          BlocProvider.of<SleepMusicIconBloc>(context).add(
-            AddOrRemoveSleepMusicIcon(
-              musicFileIndex: index,
-              playPauseButtonBloc:
-                  BlocProvider.of<PlayPauseButtonBloc>(context),
-              errorBloc: BlocProvider.of<ErrorBloc>(context),
+      child: Column(
+        children: [
+          IconButton(
+            icon: Icon(Constants.ICON_DATA_LIST[sleepMusicType][index]),
+            onPressed: () async {
+              BlocProvider.of<SleepMusicIconBloc>(context).add(
+                AddOrRemoveSleepMusicIcon(
+                  musicFileIndex: index,
+                  playPauseButtonBloc:
+                      BlocProvider.of<PlayPauseButtonBloc>(context),
+                  errorBloc: BlocProvider.of<ErrorBloc>(context),
+                ),
+              );
+            },
+          ),
+          Text(
+            "Rains",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }
