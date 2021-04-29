@@ -26,6 +26,7 @@ class MainAppState extends State<MainApp> {
   ErrorBloc errorBloc;
   BottomNavBarBloc bottomNavBarBloc;
   List<Widget> APP_BODY_LIST;
+  AssetImage bGImage;
 
   @override
   void initState() {
@@ -39,6 +40,7 @@ class MainAppState extends State<MainApp> {
       SleepMusic(),
       AlarmScreen(),
     ];
+    bGImage = AssetImage("images/moonlight.jpg");
   }
 
   @override
@@ -48,6 +50,12 @@ class MainAppState extends State<MainApp> {
     sleepMusicIconBloc.close();
     errorBloc.close();
     bottomNavBarBloc.close();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(bGImage, context);
   }
 
   @override
@@ -84,7 +92,7 @@ class MainAppState extends State<MainApp> {
             constraints: BoxConstraints.expand(),
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("images/moonlight.jpeg"), fit: BoxFit.fill),
+                  image: AssetImage("images/moonlight.jpg"), fit: BoxFit.fill),
             ),
             margin: EdgeInsets.only(
               top: 10,
