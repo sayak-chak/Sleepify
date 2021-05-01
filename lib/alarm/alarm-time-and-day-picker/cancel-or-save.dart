@@ -1,4 +1,7 @@
+import 'package:Sleepify/errors/error-bloc/error_bloc.dart';
+import 'package:Sleepify/errors/error-bloc/error_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:Sleepify/alarm/alarm-page/bloc/alarm_page_bloc.dart';
@@ -63,12 +66,11 @@ class CancelOrSave extends StatelessWidget {
             child: TextButton(
               onPressed: () async {
                 alarmTimeAndDayPickerBloc.add(
-                  SetAlarm(),
+                  SetAlarm(
+                    errorBloc: BlocProvider.of<ErrorBloc>(context),
+                    alarmPageBloc: alarmPageBloc,
+                  ),
                 );
-                Future.delayed(
-                    Duration(milliseconds: 100),
-                    () => alarmPageBloc.add(UpdateAlarmPageScreen(
-                        screenIndex: Constants.ALARM_PAGE_ALARM_LIST_INDEX)));
               },
               child: SizedBox(
                 width: MediaQuery.of(context).size.width / 3,

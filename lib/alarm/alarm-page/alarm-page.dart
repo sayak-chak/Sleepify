@@ -21,7 +21,7 @@ class AlarmScreenState extends State<AlarmScreen> {
   @override
   void initState() {
     _alarmPageBloc = AlarmPageBloc();
-    _alarmTimeAndDayPickerBloc = AlarmTimeAndDayPickerBloc();
+    _alarmTimeAndDayPickerBloc = AlarmTimeAndDayPickerBloc(alarmPageBloc: _alarmPageBloc);
     // _alarmListBloc = AlarmListBloc();
     super.initState();
   }

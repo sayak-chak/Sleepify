@@ -28,18 +28,18 @@ class SleepMusicIcon extends StatelessWidget {
           Radius.circular(14.0),
         ),
         color: color,
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.blueAccent,
-        //     spreadRadius: color == Colors.white ? 4 : 10,
-        //     blurRadius: color == Colors.white ? 4 : 10,
-        //   ),
-        //   BoxShadow(
-        //     color: Colors.blueAccent,
-        //     spreadRadius: color == Colors.white ? -4 : -10,
-        //     blurRadius: color == Colors.white ? 4 : 10,
-        //   )
-        // ],
+        boxShadow: [
+          BoxShadow(
+            color: Colors.blueAccent,
+            spreadRadius: color == Colors.white ? 4 : 10,
+            blurRadius: color == Colors.white ? 4 : 10,
+          ),
+          BoxShadow(
+            color: Colors.blueAccent,
+            spreadRadius: color == Colors.white ? -4 : -10,
+            blurRadius: color == Colors.white ? 4 : 10,
+          )
+        ],
       ),
       child: InkWell(
         onTap: () async {

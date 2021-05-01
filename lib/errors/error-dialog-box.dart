@@ -12,6 +12,7 @@ class ErrorDialog extends StatelessWidget {
     //   child: Center(child: Text(errorMessage)),
     // );
     return Flushbar(
+      flushbarPosition: FlushbarPosition.TOP,
       icon: Icon(
         FontAwesomeIcons.exclamation,
         color: Colors.greenAccent,

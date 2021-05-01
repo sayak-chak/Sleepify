@@ -1,6 +1,11 @@
 import 'dart:async';
 import 'dart:collection';
 import 'dart:typed_data';
+import 'package:Sleepify/alarm/alarm-page/bloc/alarm_page_bloc.dart';
+import 'package:Sleepify/alarm/alarm-page/bloc/alarm_page_events.dart';
+import 'package:Sleepify/constants.dart';
+import 'package:Sleepify/errors/error-bloc/error_event.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:Sleepify/alarm/alarm-page/bloc/alarm_data.dart';
@@ -9,6 +14,7 @@ import 'package:Sleepify/alarm/alarm-time-and-day-picker/bloc/alarm_time_and_day
 import 'package:timezone/timezone.dart' as tz;
 
 class AlarmTimeAndDayPickerBloc extends Bloc<AlarmTimeAndDayPickerEvent, void> {
+  AlarmPageBloc alarmPageBloc;
   AlarmData _alarmData;
   int _hours, _minutes;
   bool _sunday, _monday, _tuesday, _wednesday, _thursday, _friday, _saturday;
@@ -26,7 +32,7 @@ class AlarmTimeAndDayPickerBloc extends Bloc<AlarmTimeAndDayPickerEvent, void> {
     _saturday = false;
   }
 
-  AlarmTimeAndDayPickerBloc() : super(null) {
+  AlarmTimeAndDayPickerBloc({@required this.alarmPageBloc}) : super(null) {
     _alarmData = AlarmData();
     _initializeWithDefaultValues();
     var initializationSettingsAndroid =
@@ -123,16 +129,21 @@ class AlarmTimeAndDayPickerBloc extends Bloc<AlarmTimeAndDayPickerEvent, void> {
   //TODO: can this be done in a better way?
   // ignore: missing_return
   Stream<void> mapEventToState(AlarmTimeAndDayPickerEvent event) {
-    if (event is SetAlarm &&
-        (_sunday ||
-            _monday ||
-            _tuesday ||
-            _wednesday ||
-            _thursday ||
-            _friday ||
-            _saturday)) {
-      _showNotificationMediaStyle();
-      _updateDatabase();
+    if (event is SetAlarm) {
+      if ((_sunday ||
+          _monday ||
+          _tuesday ||
+          _wednesday ||
+          _thursday ||
+          _friday ||
+          _saturday)) {
+        _showNotificationMediaStyle();
+        _updateDatabase();
+        event.alarmPageBloc.add(UpdateAlarmPageScreen(
+            screenIndex: Constants.ALARM_PAGE_ALARM_LIST_INDEX));
+      } else {
+        event.errorBloc.add(NewError(errorMessage: "Please select a day"));
+      }
     } else if (event is SetHours) {
       _hours = event.hours;
     } else if (event is SetMinutes) {
