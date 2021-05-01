@@ -29,19 +29,19 @@ class SleepMusicListPickersState extends State<SleepMusicListPickers> {
         child: Row(
           children: [
             SleepMusicListPicker(
-              typeOfMusicList: "Animals And Birds",
+              typeOfMusicList: "Animals & Birds",
               updateSelectedSleepMusicType: updateSelectedSleepMusicType,
-              isSelected: selectedSleepMusicType == "Animals And Birds",
+              isSelected: selectedSleepMusicType == "Animals & Birds",
             ),
             SleepMusicListPicker(
-              typeOfMusicList: "Mechanical",
+              typeOfMusicList: "Nature",
               updateSelectedSleepMusicType: updateSelectedSleepMusicType,
-              isSelected: selectedSleepMusicType == "Mechanical",
+              isSelected: selectedSleepMusicType == "Nature",
             ),
             SleepMusicListPicker(
-              typeOfMusicList: "Planetary",
+              typeOfMusicList: "ASMR & Focus",
               updateSelectedSleepMusicType: updateSelectedSleepMusicType,
-              isSelected: selectedSleepMusicType == "Planetary",
+              isSelected: selectedSleepMusicType == "ASMR & Focus",
             ),
           ],
         ),

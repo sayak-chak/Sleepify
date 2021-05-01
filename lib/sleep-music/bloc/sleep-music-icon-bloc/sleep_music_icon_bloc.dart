@@ -50,9 +50,9 @@ class SleepMusicIconBloc
 
   Stream<SleepMusicIconState> _updateSleepMusicTypeIndex(
       String sleepMusicListType) async* {
-    if (sleepMusicListType == "Animals And Birds") {
+    if (sleepMusicListType == "Animals & Birds") {
       _currentSleepMusicTypeIndex = Constants.SLEEP_MUSIC_TYPE_NATURE;
-    } else if (sleepMusicListType == "Mechanical") {
+    } else if (sleepMusicListType == "Nature") {
       _currentSleepMusicTypeIndex = Constants.SLEEP_MUSIC_TYPE_MECHANICAL;
     } else {
       _currentSleepMusicTypeIndex = Constants.SLEEP_MUSIC_TYPE_PLANETARY;

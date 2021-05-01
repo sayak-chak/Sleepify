@@ -41,28 +41,37 @@ class SleepMusicIcon extends StatelessWidget {
           )
         ],
       ),
-      child: Column(
-        children: [
-          IconButton(
-            icon: Icon(Constants.ICON_DATA_LIST[sleepMusicType][index]),
-            onPressed: () async {
-              BlocProvider.of<SleepMusicIconBloc>(context).add(
-                AddOrRemoveSleepMusicIcon(
-                  musicFileIndex: index,
-                  playPauseButtonBloc:
-                      BlocProvider.of<PlayPauseButtonBloc>(context),
-                  errorBloc: BlocProvider.of<ErrorBloc>(context),
+      child: SizedBox(
+        width: 180,
+        height: 180,
+        child: Wrap(children: [
+          Column(
+            children: [
+              IconButton(
+                icon: Icon(Constants.ICON_DATA_LIST[sleepMusicType][index]),
+                onPressed: () async {
+                  BlocProvider.of<SleepMusicIconBloc>(context).add(
+                    AddOrRemoveSleepMusicIcon(
+                      musicFileIndex: index,
+                      playPauseButtonBloc:
+                          BlocProvider.of<PlayPauseButtonBloc>(context),
+                      errorBloc: BlocProvider.of<ErrorBloc>(context),
+                    ),
+                  );
+                },
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(
+                  Constants.SLEEP_MUSIC_DESC[sleepMusicType][index],
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              );
-            },
+              ),
+            ],
           ),
-          Text(
-            "Rains",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
+        ]),
       ),
     );
   }

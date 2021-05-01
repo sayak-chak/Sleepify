@@ -1,0 +1,28 @@
+{
+  "name": "CustomIcons",
+  "css_prefix_text": "",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "8d8a2d9bcc41c7ac794e83ffbb919c3c",
+      "css": "rain-inv",
+      "code": 59393,
+      "src": "meteocons"
+    },
+    {
+      "uid": "92234661a134ed625a779c534b242b3d",
+      "css": "drizzle-inv",
+      "code": 59392,
+      "src": "meteocons"
+    },
+    {
+      "uid": "66a40c7c0ee5ea61f4b6aa0dd0f9ebb9",
+      "css": "cloud-thunder",
+      "code": 59394,
+      "src": "entypo"
+    }
+  ]
+}

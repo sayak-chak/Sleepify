@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:Sleepify/utils/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -72,18 +73,6 @@ class Constants {
       "animals-and-birds/walking-with-dog.mp3",
       "animals-and-birds/trottling-horse.mp3"
     ],
-    [ 
-      "asmr-and-focus/delta-wave.mp3",
-      "asmr-and-focus/guitar-1.mp3",
-      "asmr-and-focus/guitar-2.mp3",
-      "asmr-and-focus/orchestra.mp3",
-      "asmr-and-focus/scissors-in-air.mp3",
-      "asmr-and-focus/tibetian-bowl.mp3",
-      "asmr-and-focus/violin-1.mp3",
-      "asmr-and-focus/white-noise.mp3",
-      "asmr-and-focus/white-noise-2.mp3",
-      "asmr-and-focus/wind-chime.mp3"
-    ],
     [
       "nature/digging.mp3",
       "nature/firewood.mp3",
@@ -96,21 +85,96 @@ class Constants {
       "nature/wind-1.mp3",
       "nature/wind-2.mp3"
     ],
+    [
+      "asmr-and-focus/delta-wave.mp3",
+      "asmr-and-focus/guitar-1.mp3",
+      "asmr-and-focus/guitar-2.mp3",
+      "asmr-and-focus/orchestra.mp3",
+      "asmr-and-focus/scissors-in-air.mp3",
+      "asmr-and-focus/tibetian-bowl.mp3",
+      "asmr-and-focus/violin-1.mp3",
+      "asmr-and-focus/white-noise.mp3",
+      "asmr-and-focus/white-noise-2.mp3",
+      "asmr-and-focus/wind-chime.mp3"
+    ],
   ]; //TODO : 2D array tightly coupled with icon data list
 
   static final ICON_DATA_LIST = [
-    List.generate(Constants.NUMBER_OF_SLEEP_SONGS_IN_EACH_GROUP, (index) {
-      if (index % 2 == 0) return FontAwesomeIcons.plus;
-      return FontAwesomeIcons.addressCard;
-    }),
-    List.generate(Constants.NUMBER_OF_SLEEP_SONGS_IN_EACH_GROUP, (index) {
-      if (index % 2 == 0) return FontAwesomeIcons.minus;
-      return FontAwesomeIcons.addressCard;
-    }),
-    List.generate(Constants.NUMBER_OF_SLEEP_SONGS_IN_EACH_GROUP, (index) {
-      if (index % 2 == 0) return FontAwesomeIcons.addressBook;
-      return FontAwesomeIcons.addressCard;
-    })
+    [
+      Icons.wb_sunny,
+      FontAwesomeIcons.frog,
+      FontAwesomeIcons.earlybirds,
+      FontAwesomeIcons.frog,
+      FontAwesomeIcons.earlybirds,
+      FontAwesomeIcons.frog,
+      FontAwesomeIcons.bug,
+      FontAwesomeIcons.kiwiBird,
+      FontAwesomeIcons.dog,
+      FontAwesomeIcons.horse,
+    ],
+    [
+      Icons.landscape,
+      FontAwesomeIcons.fire,
+      FontAwesomeIcons.snowflake,
+      CustomIcons.rain_inv,
+      CustomIcons.rain_inv,
+      CustomIcons.cloud_thunder,
+      CustomIcons.cloud_thunder,
+      CustomIcons.drizzle_inv,
+      FontAwesomeIcons.wind,
+      FontAwesomeIcons.wind,
+    ],
+    [
+      FontAwesomeIcons.waveSquare,
+      FontAwesomeIcons.guitar,
+      FontAwesomeIcons.guitar,
+      FontAwesomeIcons.drum,
+      FontAwesomeIcons.handScissors,
+      FontAwesomeIcons.solidBell,
+      FontAwesomeIcons.drumstickBite,
+      FontAwesomeIcons.headphones,
+      FontAwesomeIcons.headphones,
+      FontAwesomeIcons.wind,
+    ],
+  ];
+
+  static final SLEEP_MUSIC_DESC = [
+    [
+      "Village Morning",
+      "Wetlands",
+      "Spring Birds",
+      "Croaking Frogs",
+      "Cuckoo",
+      "Frogs In Swamp",
+      "Grasshopper",
+      "Night Birds",
+      "Stroll With Dog",
+      "Trotting Horse"
+    ],
+    [
+      "Landslide",
+      "Fire",
+      "Iceberg",
+      "Moderate Rain",
+      "Heavy Rain",
+      "Thunder Rain",
+      "Thunder",
+      "Drizzle",
+      "Mountain Wind",
+      "Desert Wind"
+    ],
+    [
+      "Delta Wave",
+      "Guitar Fading",
+      "Guitar Gallop",
+      "Orchestra",
+      "Haircut",
+      "Tibetian Bowl",
+      "Violin",
+      "White Noise",
+      "Gaussian Noise",
+      "Wind Chimes"
+    ],
   ];
 
   static const int MAX_NO_OF_CONCURRENT_SOUNDS = 2;

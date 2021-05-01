@@ -24,12 +24,9 @@ class SleepMusicList extends StatelessWidget {
             bottom: 10),
         child: GridView.count(
           padding: EdgeInsets.all(10),
-          mainAxisSpacing: 5,
-          crossAxisSpacing: 5,
-          crossAxisCount: MediaQuery.of(context).size.height >
-                  MediaQuery.of(context).size.width
-              ? 4
-              : 8,
+          // mainAxisSpacing: ((MediaQuery.of(context).size.height * 0.80) ~/ 100),
+          // crossAxisSpacing: (MediaQuery.of(context).size.height * 0.80) / 100,
+          crossAxisCount: (MediaQuery.of(context).size.height * 0.80) ~/ 180,
           children: List.generate(Constants.NUMBER_OF_SLEEP_SONGS_IN_EACH_GROUP,
               (index) {
             return BlocBuilder(
