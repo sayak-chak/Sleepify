@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sleep/constants.dart';
-import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_bloc.dart';
-import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_state.dart';
-import 'package:sleep/sleep-music/sleep-music-icon.dart';
-import 'package:sleep/utils/pair_for_sleep_music.dart';
+import 'package:Sleepify/constants.dart';
+import 'package:Sleepify/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_bloc.dart';
+import 'package:Sleepify/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_state.dart';
+import 'package:Sleepify/sleep-music/sleep-music-icon.dart';
+import 'package:Sleepify/utils/pair_for_sleep_music.dart';
 
 class SleepMusicList extends StatelessWidget {
   @override
@@ -14,7 +14,7 @@ class SleepMusicList extends StatelessWidget {
     _sleepMusicIconBloc = BlocProvider.of<SleepMusicIconBloc>(context);
     return Flexible(
       flex: 3,
-          child: Container(
+      child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: Colors.white),
           borderRadius: BorderRadius.circular(5),

@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sleep/alarm/alarm-list/alarm-list.dart';
-import 'package:sleep/alarm/alarm-page/bloc/alarm_page_bloc.dart';
-import 'package:sleep/alarm/alarm-page/bloc/alarm_page_state.dart';
-import 'package:sleep/alarm/alarm-time-and-day-picker/alarm-time-and-day-picker.dart';
-import 'package:sleep/alarm/alarm-time-and-day-picker/bloc/alarm_time_and_day_picker_bloc.dart';
-import 'package:sleep/constants.dart';
+import 'package:Sleepify/alarm/alarm-list/alarm-list.dart';
+import 'package:Sleepify/alarm/alarm-page/bloc/alarm_page_bloc.dart';
+import 'package:Sleepify/alarm/alarm-page/bloc/alarm_page_state.dart';
+import 'package:Sleepify/alarm/alarm-time-and-day-picker/alarm-time-and-day-picker.dart';
+import 'package:Sleepify/alarm/alarm-time-and-day-picker/bloc/alarm_time_and_day_picker_bloc.dart';
+import 'package:Sleepify/constants.dart';
 
 class AlarmScreen extends StatefulWidget {
   @override

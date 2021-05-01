@@ -1,5 +1,5 @@
-import 'package:sleep/alarm/alarm-page/bloc/alarm_data.dart';
-import 'package:sleep/database/database_alarm_client.dart';
+import 'package:Sleepify/alarm/alarm-page/bloc/alarm_data.dart';
+import 'package:Sleepify/database/database_alarm_client.dart';
 
 class AlarmListBloc {
   AlarmData _alarmData;

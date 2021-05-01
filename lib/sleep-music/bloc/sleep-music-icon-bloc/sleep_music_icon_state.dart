@@ -1,9 +1,9 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:sleep/constants.dart';
-import 'package:sleep/database/database_sleep_music_icon_client.dart';
-import 'package:sleep/utils/pair_for_sleep_music.dart';
+import 'package:Sleepify/constants.dart';
+import 'package:Sleepify/database/database_sleep_music_icon_client.dart';
+import 'package:Sleepify/utils/pair_for_sleep_music.dart';
 
 abstract class SleepMusicIconState {}
 

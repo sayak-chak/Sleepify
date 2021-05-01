@@ -1,6 +1,6 @@
 {
-    "name": "sleep",
-    "short_name": "sleep",
+    "name": "Sleepify",
+    "short_name": "Sleepify",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

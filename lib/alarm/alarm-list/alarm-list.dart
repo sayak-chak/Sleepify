@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sleep/alarm/alarm-list/alarm-list-item.dart';
-import 'package:sleep/alarm/alarm-list/bloc/alarm_list_bloc.dart';
-import 'package:sleep/alarm/alarm-page/bloc/alarm_page_bloc.dart';
-import 'package:sleep/alarm/alarm-page/bloc/alarm_page_events.dart';
-import 'package:sleep/constants.dart';
-import 'package:sleep/database/database_alarm_client.dart';
+import 'package:Sleepify/alarm/alarm-list/alarm-list-item.dart';
+import 'package:Sleepify/alarm/alarm-list/bloc/alarm_list_bloc.dart';
+import 'package:Sleepify/alarm/alarm-page/bloc/alarm_page_bloc.dart';
+import 'package:Sleepify/alarm/alarm-page/bloc/alarm_page_events.dart';
+import 'package:Sleepify/constants.dart';
+import 'package:Sleepify/database/database_alarm_client.dart';
 
 class AlarmList extends StatelessWidget {
   final AlarmPageBloc alarmPageBloc;

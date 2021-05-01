@@ -4,16 +4,16 @@ import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sleep/constants.dart';
-import 'package:sleep/database/database_sleep_music_icon_client.dart';
-import 'package:sleep/errors/error-bloc/error_bloc.dart';
-import 'package:sleep/errors/error-bloc/error_event.dart';
-import 'package:sleep/sleep-music/bloc/play-pause-button-bloc/play_pause_button_bloc.dart';
-import 'package:sleep/sleep-music/bloc/play-pause-button-bloc/play_pause_button_event.dart';
-import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_data.dart';
-import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_event.dart';
-import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_state.dart';
-import 'package:sleep/utils/pair_for_sleep_music.dart';
+import 'package:Sleepify/constants.dart';
+import 'package:Sleepify/database/database_sleep_music_icon_client.dart';
+import 'package:Sleepify/errors/error-bloc/error_bloc.dart';
+import 'package:Sleepify/errors/error-bloc/error_event.dart';
+import 'package:Sleepify/sleep-music/bloc/play-pause-button-bloc/play_pause_button_bloc.dart';
+import 'package:Sleepify/sleep-music/bloc/play-pause-button-bloc/play_pause_button_event.dart';
+import 'package:Sleepify/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_data.dart';
+import 'package:Sleepify/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_event.dart';
+import 'package:Sleepify/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_state.dart';
+import 'package:Sleepify/utils/pair_for_sleep_music.dart';
 
 class SleepMusicIconBloc
     extends Bloc<SleepMusicIconEvent, SleepMusicIconState> {
@@ -50,7 +50,7 @@ class SleepMusicIconBloc
 
   Stream<SleepMusicIconState> _updateSleepMusicTypeIndex(
       String sleepMusicListType) async* {
-    if (sleepMusicListType == "Nature") {
+    if (sleepMusicListType == "Animals And Birds") {
       _currentSleepMusicTypeIndex = Constants.SLEEP_MUSIC_TYPE_NATURE;
     } else if (sleepMusicListType == "Mechanical") {
       _currentSleepMusicTypeIndex = Constants.SLEEP_MUSIC_TYPE_MECHANICAL;

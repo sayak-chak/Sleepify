@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_bloc.dart';
-import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_event.dart';
+import 'package:Sleepify/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_bloc.dart';
+import 'package:Sleepify/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_event.dart';
 
 class SleepMusicListPickers extends StatefulWidget {
   // final String selectedSleepMusicType;
   // SleepMusicListPickers({@required this.selectedSleepMusicType});
   @override
   State<StatefulWidget> createState() =>
-      SleepMusicListPickersState(selectedSleepMusicType: "Nature");
+      SleepMusicListPickersState(selectedSleepMusicType: "Animals And Birds");
 }
 
 class SleepMusicListPickersState extends State<SleepMusicListPickers> {
@@ -29,9 +29,9 @@ class SleepMusicListPickersState extends State<SleepMusicListPickers> {
         child: Row(
           children: [
             SleepMusicListPicker(
-              typeOfMusicList: "Nature",
+              typeOfMusicList: "Animals And Birds",
               updateSelectedSleepMusicType: updateSelectedSleepMusicType,
-              isSelected: selectedSleepMusicType == "Nature",
+              isSelected: selectedSleepMusicType == "Animals And Birds",
             ),
             SleepMusicListPicker(
               typeOfMusicList: "Mechanical",

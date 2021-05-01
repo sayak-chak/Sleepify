@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sleep/errors/error-bloc/error_bloc.dart';
-import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_bloc.dart';
+import 'package:Sleepify/errors/error-bloc/error_bloc.dart';
+import 'package:Sleepify/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_bloc.dart';
 
 abstract class PlayPauseButtonEvent {}
 

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:sleep/alarm/alarm-page/alarm-page.dart';
-import 'package:sleep/bottom-nav-bar/bloc/bottom_nav_event.dart';
-import 'package:sleep/bottom-nav-bar/bloc/botton_nav_bloc.dart';
-import 'package:sleep/bottom-nav-bar/bottom-navigaton-bar.dart';
-import 'package:sleep/errors/error-bloc/error_bloc.dart';
-import 'package:sleep/errors/error-bloc/error_event.dart';
-import 'package:sleep/sleep-music/bloc/play-pause-button-bloc/play_pause_button_bloc.dart';
-import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_bloc.dart';
-import 'package:sleep/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_event.dart';
-import 'package:sleep/sleep-music/sleep-music.dart';
+import 'package:Sleepify/alarm/alarm-page/alarm-page.dart';
+import 'package:Sleepify/bottom-nav-bar/bloc/bottom_nav_event.dart';
+import 'package:Sleepify/bottom-nav-bar/bloc/botton_nav_bloc.dart';
+import 'package:Sleepify/bottom-nav-bar/bottom-navigaton-bar.dart';
+import 'package:Sleepify/errors/error-bloc/error_bloc.dart';
+import 'package:Sleepify/errors/error-bloc/error_event.dart';
+import 'package:Sleepify/sleep-music/bloc/play-pause-button-bloc/play_pause_button_bloc.dart';
+import 'package:Sleepify/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_bloc.dart';
+import 'package:Sleepify/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_event.dart';
+import 'package:Sleepify/sleep-music/sleep-music.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sleep/database/database_alarm_client.dart';
-import 'package:sleep/database/datatbase.dart';
+import 'package:Sleepify/database/database_alarm_client.dart';
+import 'package:Sleepify/database/datatbase.dart';
 
 class AlarmData {
   Future<List<AlarmClient>> getListOfAlarms() async {

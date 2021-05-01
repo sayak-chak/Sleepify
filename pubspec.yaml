@@ -1,4 +1,4 @@
-name: sleep
+name: Sleepify
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -38,6 +38,7 @@ dependencies:
   google_fonts: 1.1.2
   flushbar: ^1.10.4
   equatable: ^2.0.0
+  flutter_launcher_icons: ^0.9.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -66,6 +67,37 @@ flutter:
     # - images/full_moon.jpg
     - assets/rain.mp3
     - assets/cough.mp3
+    - assets/animals-and-birds/animal-conversation.mp3
+    - assets/animals-and-birds/animals-in-wetlands.mp3
+    - assets/animals-and-birds/bird-call-in-spring.mp3
+    - assets/animals-and-birds/croaking-frogs.mp3
+    - assets/animals-and-birds/cuckoo.mp3
+    - assets/animals-and-birds/frogs.mp3
+    - assets/animals-and-birds/grasshoppers.mp3
+    - assets/animals-and-birds/spring-birds-at-night.mp3
+    - assets/animals-and-birds/walking-with-dog.mp3
+    - assets/animals-and-birds/trottling-horse.mp3
+    - assets/asmr-and-focus/delta-wave.mp3 
+    - assets/asmr-and-focus/guitar-1.mp3 
+    - assets/asmr-and-focus/guitar-2.mp3 
+    - assets/asmr-and-focus/orchestra.mp3 
+    - assets/asmr-and-focus/scissors-in-air.mp3 
+    - assets/asmr-and-focus/tibetian-bowl.mp3 
+    - assets/asmr-and-focus/violin-1.mp3 
+    - assets/asmr-and-focus/white-noise.mp3 
+    - assets/asmr-and-focus/white-noise-2.mp3 
+    - assets/asmr-and-focus/wind-chime.mp3 
+    - assets/nature/digging.mp3 
+    - assets/nature/firewood.mp3 
+    - assets/nature/iceberg.mp3 
+    - assets/nature/rain-1.mp3 
+    - assets/nature/rain-2.mp3 
+    - assets/nature/thunder-1.mp3 
+    - assets/nature/thunder-rain.mp3 
+    - assets/nature/water-flow-1.mp3 
+    - assets/nature/wind-1.mp3 
+    - assets/nature/wind-2.mp3 
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -93,3 +125,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_icons:
+  image_path: "assets/icon/icon.png" 
+  android: true
+  ios: true

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sleep/bottom-nav-bar/bloc/botton_nav_bloc.dart';
-import 'package:sleep/constants.dart';
-import 'package:sleep/bottom-nav-bar/bloc/bottom_nav_event.dart';
-import 'package:sleep/main.dart';
+import 'package:Sleepify/bottom-nav-bar/bloc/botton_nav_bloc.dart';
+import 'package:Sleepify/constants.dart';
+import 'package:Sleepify/bottom-nav-bar/bloc/bottom_nav_event.dart';
+import 'package:Sleepify/main.dart';
 
 class SleepAppBottomNavigationBar extends StatefulWidget {
   @override

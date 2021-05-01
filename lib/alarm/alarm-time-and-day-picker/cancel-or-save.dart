@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:sleep/alarm/alarm-page/bloc/alarm_page_bloc.dart';
-import 'package:sleep/alarm/alarm-page/bloc/alarm_page_events.dart';
-import 'package:sleep/alarm/alarm-time-and-day-picker/bloc/alarm_time_and_day_picker_bloc.dart';
-import 'package:sleep/alarm/alarm-time-and-day-picker/bloc/alarm_time_and_day_picker_event.dart';
-import 'package:sleep/constants.dart';
+import 'package:Sleepify/alarm/alarm-page/bloc/alarm_page_bloc.dart';
+import 'package:Sleepify/alarm/alarm-page/bloc/alarm_page_events.dart';
+import 'package:Sleepify/alarm/alarm-time-and-day-picker/bloc/alarm_time_and_day_picker_bloc.dart';
+import 'package:Sleepify/alarm/alarm-time-and-day-picker/bloc/alarm_time_and_day_picker_event.dart';
+import 'package:Sleepify/constants.dart';
 
 class CancelOrSave extends StatelessWidget {
   final AlarmPageBloc alarmPageBloc;

@@ -60,18 +60,42 @@ class Constants {
   static const int SLEEP_MUSIC_TYPE_PLANETARY = 2;
 
   static final MUSIC_FILE_CORRESPONDING_TO_ICON_INDEX = [
-    List.generate(Constants.NUMBER_OF_SLEEP_SONGS_IN_EACH_GROUP, (index) {
-      if (index == 0) return "rain.mp3";
-      return "cough.mp3";
-    }),
-    List.generate(Constants.NUMBER_OF_SLEEP_SONGS_IN_EACH_GROUP, (index) {
-      if (index == 0) return "rain.mp3";
-      return "cough.mp3";
-    }),
-    List.generate(Constants.NUMBER_OF_SLEEP_SONGS_IN_EACH_GROUP, (index) {
-      if (index == 0) return "rain.mp3";
-      return "cough.mp3";
-    })
+    [
+      "animals-and-birds/animal-conversation.mp3",
+      "animals-and-birds/animals-in-wetlands.mp3",
+      "animals-and-birds/bird-call-in-spring.mp3",
+      "animals-and-birds/croaking-frogs.mp3",
+      "animals-and-birds/cuckoo.mp3",
+      "animals-and-birds/frogs.mp3",
+      "animals-and-birds/grasshoppers.mp3",
+      "animals-and-birds/spring-birds-at-night.mp3",
+      "animals-and-birds/walking-with-dog.mp3",
+      "animals-and-birds/trottling-horse.mp3"
+    ],
+    [ 
+      "asmr-and-focus/delta-wave.mp3",
+      "asmr-and-focus/guitar-1.mp3",
+      "asmr-and-focus/guitar-2.mp3",
+      "asmr-and-focus/orchestra.mp3",
+      "asmr-and-focus/scissors-in-air.mp3",
+      "asmr-and-focus/tibetian-bowl.mp3",
+      "asmr-and-focus/violin-1.mp3",
+      "asmr-and-focus/white-noise.mp3",
+      "asmr-and-focus/white-noise-2.mp3",
+      "asmr-and-focus/wind-chime.mp3"
+    ],
+    [
+      "nature/digging.mp3",
+      "nature/firewood.mp3",
+      "nature/iceberg.mp3",
+      "nature/rain-1.mp3",
+      "nature/rain-2.mp3",
+      "nature/thunder-1.mp3",
+      "nature/thunder-rain.mp3",
+      "nature/water-flow-1.mp3",
+      "nature/wind-1.mp3",
+      "nature/wind-2.mp3"
+    ],
   ]; //TODO : 2D array tightly coupled with icon data list
 
   static final ICON_DATA_LIST = [

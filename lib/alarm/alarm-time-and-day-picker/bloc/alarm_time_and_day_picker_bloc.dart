@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:collection';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:sleep/alarm/alarm-page/bloc/alarm_data.dart';
-import 'package:sleep/alarm/alarm-page/time_zone.dart';
-import 'package:sleep/alarm/alarm-time-and-day-picker/bloc/alarm_time_and_day_picker_event.dart';
+import 'package:Sleepify/alarm/alarm-page/bloc/alarm_data.dart';
+import 'package:Sleepify/alarm/alarm-page/time_zone.dart';
+import 'package:Sleepify/alarm/alarm-time-and-day-picker/bloc/alarm_time_and_day_picker_event.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 class AlarmTimeAndDayPickerBloc extends Bloc<AlarmTimeAndDayPickerEvent, void> {

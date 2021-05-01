@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:sleep/main-app.dart';
+import 'package:Sleepify/main-app.dart';
 
 void main() {
   runApp(MyApp());

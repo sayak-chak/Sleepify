@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sleep/database/database_sleep_music_icon_client.dart';
-import 'package:sleep/database/datatbase.dart';
+import 'package:Sleepify/database/database_sleep_music_icon_client.dart';
+import 'package:Sleepify/database/datatbase.dart';
 
 class SleepMusicIconData {
   Future<List<SleepMusicIconClient>> getPlayList() async {
