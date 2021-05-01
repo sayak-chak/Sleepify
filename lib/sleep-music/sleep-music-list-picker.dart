@@ -8,7 +8,7 @@ class SleepMusicListPickers extends StatefulWidget {
   // SleepMusicListPickers({@required this.selectedSleepMusicType});
   @override
   State<StatefulWidget> createState() =>
-      SleepMusicListPickersState(selectedSleepMusicType: "Animals And Birds");
+      SleepMusicListPickersState(selectedSleepMusicType: "Animals & Birds");
 }
 
 class SleepMusicListPickersState extends State<SleepMusicListPickers> {

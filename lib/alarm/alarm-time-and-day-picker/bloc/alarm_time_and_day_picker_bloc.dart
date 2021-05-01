@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:collection';
+import 'dart:typed_data';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:Sleepify/alarm/alarm-page/bloc/alarm_data.dart';
@@ -96,6 +97,9 @@ class AlarmTimeAndDayPickerBloc extends Bloc<AlarmTimeAndDayPickerEvent, void> {
       icon: '@mipmap/ic_launcher',
       sound: RawResourceAndroidNotificationSound('alarm'),
       largeIcon: DrawableResourceAndroidBitmap('@mipmap/ic_launcher'),
+      additionalFlags: Int32List.fromList(<int>[4]),
+      importance: Importance.max,
+      playSound: true,
     );
     var iosPlatformChannelSpecifics = IOSNotificationDetails(
         sound: 'alarm',

@@ -28,22 +28,21 @@ class SleepMusicIcon extends StatelessWidget {
           Radius.circular(14.0),
         ),
         color: color,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.blueAccent,
-            spreadRadius: color == Colors.white ? 4 : 10,
-            blurRadius: color == Colors.white ? 4 : 10,
-          ),
-          BoxShadow(
-            color: Colors.blueAccent,
-            spreadRadius: color == Colors.white ? -4 : -10,
-            blurRadius: color == Colors.white ? 4 : 10,
-          )
-        ],
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: Colors.blueAccent,
+        //     spreadRadius: color == Colors.white ? 4 : 10,
+        //     blurRadius: color == Colors.white ? 4 : 10,
+        //   ),
+        //   BoxShadow(
+        //     color: Colors.blueAccent,
+        //     spreadRadius: color == Colors.white ? -4 : -10,
+        //     blurRadius: color == Colors.white ? 4 : 10,
+        //   )
+        // ],
       ),
       child: InkWell(
         onTap: () async {
-          print("skjgfrkjdsgfjkdshfkjdshfkjdshfjk");
           BlocProvider.of<SleepMusicIconBloc>(context).add(
             AddOrRemoveSleepMusicIcon(
               musicFileIndex: index,
@@ -62,12 +61,14 @@ class SleepMusicIcon extends StatelessWidget {
                 IconButton(
                     icon: Icon(Constants.ICON_DATA_LIST[sleepMusicType][index]),
                     onPressed: () => {}),
-                Align(
-                  alignment: Alignment.bottomCenter,
+                Center(
                   child: Text(
                     Constants.SLEEP_MUSIC_DESC[sleepMusicType][index],
+                    maxLines: 3,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
+                      fontSize: 12,
                     ),
                   ),
                 ),
