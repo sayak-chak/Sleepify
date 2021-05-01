@@ -142,7 +142,7 @@ class AlarmTimeAndDayPickerBloc extends Bloc<AlarmTimeAndDayPickerEvent, void> {
         event.alarmPageBloc.add(UpdateAlarmPageScreen(
             screenIndex: Constants.ALARM_PAGE_ALARM_LIST_INDEX));
       } else {
-        event.errorBloc.add(NewError(errorMessage: "Please select a day"));
+        event.errorBloc.add(NewError(errorMessage: "Please select day(s)"));
       }
     } else if (event is SetHours) {
       _hours = event.hours;
