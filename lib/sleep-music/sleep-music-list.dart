@@ -37,9 +37,10 @@ class SleepMusicList extends StatelessWidget {
                       sleepMusicType: state.sleepMusicTypeIndex, //TODO : change
                       index: index,
                       color: state.selectedMusicIndexPairSet.contains(
-                              PairForSleepMusic(
-                                  musicTypeIndex: state.sleepMusicTypeIndex,
-                                  musicFileIndex: index))
+                        PairForSleepMusicFile(
+                            musicTypeIndex: state.sleepMusicTypeIndex,
+                            musicFileIndex: index),
+                      )
                           ? Colors.red
                           : Colors.white,
                     );
@@ -48,7 +49,7 @@ class SleepMusicList extends StatelessWidget {
                       sleepMusicType: state.sleepMusicTypeIndex, //TODO : change
                       index: index,
                       color: state.selectedMusicIndexPairSet.contains(
-                              PairForSleepMusic(
+                              PairForSleepMusicFile(
                                   musicTypeIndex: state.sleepMusicTypeIndex,
                                   musicFileIndex: index))
                           ? Colors.red
@@ -59,7 +60,7 @@ class SleepMusicList extends StatelessWidget {
                       sleepMusicType: state.sleepMusicTypeIndex, //TODO : change
                       index: index,
                       color: state.selectedMusicIndexPairSet.contains(
-                              PairForSleepMusic(
+                              PairForSleepMusicFile(
                                   musicTypeIndex: state.sleepMusicTypeIndex,
                                   musicFileIndex: index))
                           ? Colors.red

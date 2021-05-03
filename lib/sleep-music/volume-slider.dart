@@ -32,9 +32,10 @@ class VolumeSliderState extends State<VolumeSlider> {
   void initState() {
     //TODO : definitely refactor
     volume = BlocProvider.of<SleepMusicIconBloc>(context).getVolumeFor(
-      sleepMusicType: sleepMusicType,
-      musicFileIndex: musicFileIndex,
-    ) ?? 0.5;
+          sleepMusicType: sleepMusicType,
+          musicFileIndex: musicFileIndex,
+        ) ??
+        0.5;
   }
 
   @override
@@ -55,12 +56,15 @@ class VolumeSliderState extends State<VolumeSlider> {
             activeColor: Colors.green,
             inactiveColor: Colors.orange,
             onChangeEnd: (double newVolume) {
-              if (BlocProvider.of<SleepMusicIconBloc>(context)
-                  .playListVolumeMap != null && BlocProvider.of<SleepMusicIconBloc>(context)
-                  .playListVolumeMap
-                  .containsKey(PairForSleepMusic(
-                      musicTypeIndex: sleepMusicType,
-                      musicFileIndex: musicFileIndex))) { //TODO: refactor ASAP
+              if (BlocProvider.of<SleepMusicIconBloc>(context).playListMap !=
+                      null &&
+                  BlocProvider.of<SleepMusicIconBloc>(context)
+                      .playListMap
+                      .containsKey(PairForSleepMusicFile(
+                          musicTypeIndex: sleepMusicType,
+                          musicFileIndex: musicFileIndex))) {
+                //TODO: refactor ASAP
+                print("CONTAINS KEY");
                 BlocProvider.of<SleepMusicIconBloc>(context).add(
                     ChangeVolumeOfCurrentlyPlayingMusic(
                         sleepMusicType: sleepMusicType,
@@ -69,9 +73,21 @@ class VolumeSliderState extends State<VolumeSlider> {
               }
             },
             onChanged: (double newVolume) {
-              setState(() {
-                this.volume = newVolume;
-              });
+              if (BlocProvider.of<SleepMusicIconBloc>(context).playListMap !=
+                      null &&
+                  BlocProvider.of<SleepMusicIconBloc>(context)
+                      .playListMap
+                      .containsKey(PairForSleepMusicFile(
+                          musicTypeIndex: sleepMusicType,
+                          musicFileIndex: musicFileIndex))) {
+                print(BlocProvider.of<SleepMusicIconBloc>(context)
+                    .playListMap
+                    .keys
+                    .toString());
+                setState(() {
+                  this.volume = newVolume;
+                });
+              }
             }),
       ),
     ]);

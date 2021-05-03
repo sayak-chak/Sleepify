@@ -11,13 +11,13 @@ class LoadingState extends SleepMusicIconState {}
 
 class LoadedSleepMusicFromDB extends SleepMusicIconState {
   final int sleepMusicTypeIndex = Constants.SLEEP_MUSIC_TYPE_NATURE;
-  final HashSet<PairForSleepMusic> selectedMusicIndexPairSet;
+  final HashSet<PairForSleepMusicFile> selectedMusicIndexPairSet;
   LoadedSleepMusicFromDB({@required this.selectedMusicIndexPairSet});
 }
 
 class ChangedSleepMusicIconColor extends SleepMusicIconState {
   final int sleepMusicTypeIndex;
-  final HashSet<PairForSleepMusic> selectedMusicIndexPairSet;
+  final HashSet<PairForSleepMusicFile> selectedMusicIndexPairSet;
   ChangedSleepMusicIconColor(
       {@required this.selectedMusicIndexPairSet,
       @required this.sleepMusicTypeIndex});
@@ -25,7 +25,7 @@ class ChangedSleepMusicIconColor extends SleepMusicIconState {
 
 class UpdatedSleepMusicTypeList extends SleepMusicIconState {
   final int sleepMusicTypeIndex;
-  final HashSet<PairForSleepMusic> selectedMusicIndexPairSet;
+  final HashSet<PairForSleepMusicFile> selectedMusicIndexPairSet;
   UpdatedSleepMusicTypeList({
     @required this.sleepMusicTypeIndex,
     @required this.selectedMusicIndexPairSet,
