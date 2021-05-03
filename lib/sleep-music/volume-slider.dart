@@ -64,7 +64,6 @@ class VolumeSliderState extends State<VolumeSlider> {
                           musicTypeIndex: sleepMusicType,
                           musicFileIndex: musicFileIndex))) {
                 //TODO: refactor ASAP
-                print("CONTAINS KEY");
                 BlocProvider.of<SleepMusicIconBloc>(context).add(
                     ChangeVolumeOfCurrentlyPlayingMusic(
                         sleepMusicType: sleepMusicType,

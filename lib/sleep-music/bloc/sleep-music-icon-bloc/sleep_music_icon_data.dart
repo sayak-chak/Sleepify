@@ -27,12 +27,26 @@ class SleepMusicIconData {
   }
 
   Future<void> add(
-      {@required int musicTypeIndex, @required int musicFileIndex}) async {
+      {@required int musicTypeIndex,
+      @required int musicFileIndex,
+      @required double volume}) async {
     final db = await DBProvider.db.database;
 
     await db.insert("SLEEP_MUSIC", {
       "music_type_index": musicTypeIndex,
-      "music_file_index": musicFileIndex
+      "music_file_index": musicFileIndex,
+      "volume": volume
     });
+  }
+
+  Future<void> update({@required int musicTypeIndex,
+      @required int musicFileIndex, @required double volume}) async {
+    final db = await DBProvider.db.database;
+    await db.rawUpdate("UPDATE SLEEP_MUSIC SET volume = " +
+        volume.toString() +
+        " WHERE music_type_index = " +
+        musicTypeIndex.toString() +
+        " AND music_file_index = " +
+        musicFileIndex.toString());
   }
 }

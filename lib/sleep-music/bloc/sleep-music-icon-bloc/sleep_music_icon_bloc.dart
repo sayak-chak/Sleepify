@@ -55,14 +55,18 @@ class SleepMusicIconBloc
     }
   }
 
-  void _updateVolumeIfSongIsInPlayList(
-      int sleepMusicType, int musicFileIndex, double newVolume) {
+  Future<void> _updateVolumeIfSongIsInPlayList(
+      int sleepMusicType, int musicFileIndex, double newVolume) async {
     PairForSleepMusicFile inputSleepMusic = PairForSleepMusicFile(
         musicTypeIndex: sleepMusicType, musicFileIndex: musicFileIndex);
     for (PairForSleepMusicFile sleepMusic in _playListMap.keys) {
       if (sleepMusic == inputSleepMusic) {
         _playListMap[sleepMusic].audioPlayer.setVolume(newVolume);
         _playListMap[sleepMusic].volume = newVolume;
+        await SleepMusicIconData().update(
+            musicTypeIndex: sleepMusicType,
+            musicFileIndex: musicFileIndex,
+            volume: newVolume);
         // playListVolumeMap[sleepMusic] = newVolume;
         break;
       }
@@ -107,7 +111,9 @@ class SleepMusicIconBloc
               musicTypeIndex: _currentSleepMusicTypeIndex,
               musicFileIndex: sleepMusicClient.musicFileIndex)] =
           PairForSleepMusicPlayerAndVolume(
-              audioPlayer: audioPlayer, volume: 0.5);
+        audioPlayer: audioPlayer,
+        volume: sleepMusicClient.volume,
+      );
     }
   }
 
@@ -149,7 +155,8 @@ class SleepMusicIconBloc
       // _noOfSoundsCurrentlyBeingPlayed++;
       SleepMusicIconData().add(
           musicTypeIndex: _currentSleepMusicTypeIndex,
-          musicFileIndex: musicFileIndex);
+          musicFileIndex: musicFileIndex,
+          volume: 0.5);
       _playListMap[PairForSleepMusicFile(
               musicTypeIndex: _currentSleepMusicTypeIndex,
               musicFileIndex: musicFileIndex)] =
@@ -192,8 +199,8 @@ class SleepMusicIconBloc
         //   //TODO: refactor, HACKIEST FIX EVER
         //   // playListVolumeMap[musicFileIndexPair] = 0.5;
         // }
-        _playListMap[musicFileIndexPair].volume = 0.5;
-        _playListMap[musicFileIndexPair].audioPlayer.setVolume(0.5);
+        // _playListMap[musicFileIndexPair].volume = 0.5;
+        // _playListMap[musicFileIndexPair].audioPlayer.setVolume(0.5); //TODO: remove
         await _playListMap[musicFileIndexPair].audioPlayer.resume();
       }
     }

@@ -23,6 +23,7 @@ class DBProvider {
       await db.execute("CREATE TABLE SLEEP_MUSIC ("
           "music_type_index INTEGER,"
           "music_file_index INTEGER,"
+          "volume FLOAT,"
           "PRIMARY KEY (music_type_index, music_file_index)"
           ")");
       await db.execute("CREATE TABLE ALARM ("
