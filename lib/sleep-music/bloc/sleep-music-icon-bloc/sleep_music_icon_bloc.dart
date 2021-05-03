@@ -90,7 +90,7 @@ class SleepMusicIconBloc
 
   Stream<SleepMusicIconState> _loadSleepMusicIconsFromDB() async* {
     List<SleepMusicIconClient> playList =
-        await SleepMusicIconData().getPlayList();
+        await SleepMusicIconData().getListOfSleepMusic();
     await _mapPlayList(playList);
     yield LoadedSleepMusicFromDB(
         selectedMusicIndexPairSet:
@@ -102,18 +102,20 @@ class SleepMusicIconBloc
     // playListVolumeMap = HashMap();
 
     for (SleepMusicIconClient sleepMusicClient in playList) {
-      AudioPlayer audioPlayer = await _player.loop(
-          Constants.MUSIC_FILE_CORRESPONDING_TO_ICON_INDEX[
-              _currentSleepMusicTypeIndex][sleepMusicClient.musicFileIndex]);
-      await audioPlayer.pause();
-      // await audioPlayer.resume();
-      _playListMap[PairForSleepMusicFile(
-              musicTypeIndex: _currentSleepMusicTypeIndex,
-              musicFileIndex: sleepMusicClient.musicFileIndex)] =
-          PairForSleepMusicPlayerAndVolume(
-        audioPlayer: audioPlayer,
-        volume: sleepMusicClient.volume,
-      );
+      {
+        AudioPlayer audioPlayer = await _player.loop(Constants
+                .MUSIC_FILE_CORRESPONDING_TO_ICON_INDEX[
+            sleepMusicClient.musicTypeIndex][sleepMusicClient.musicFileIndex]);
+        await audioPlayer.pause();
+        // await audioPlayer.resume();
+        _playListMap[PairForSleepMusicFile(
+                musicTypeIndex: sleepMusicClient.musicTypeIndex,
+                musicFileIndex: sleepMusicClient.musicFileIndex)] =
+            PairForSleepMusicPlayerAndVolume(
+          audioPlayer: audioPlayer,
+          volume: sleepMusicClient.volume,
+        );
+      }
     }
   }
 
@@ -130,6 +132,10 @@ class SleepMusicIconBloc
       _playListMap.remove(PairForSleepMusicFile(
           musicTypeIndex: _currentSleepMusicTypeIndex,
           musicFileIndex: musicFileIndex));
+
+      SleepMusicIconData().delete(
+          musicTypeIndex: _currentSleepMusicTypeIndex,
+          musicFileIndex: musicFileIndex);
       // playListVolumeMap.remove(PairForSleepMusicFile(
       //     musicTypeIndex: _currentSleepMusicTypeIndex,
       //     musicFileIndex: musicFileIndex));
@@ -138,9 +144,6 @@ class SleepMusicIconBloc
           selectedMusicIndexPairSet:
               HashSet<PairForSleepMusicFile>.from(_playListMap.keys));
       //
-      SleepMusicIconData().delete(
-          musicTypeIndex: _currentSleepMusicTypeIndex,
-          musicFileIndex: musicFileIndex);
       if (_playListMap.isEmpty) {
         playPauseButtonBloc.add(
             HardUpdatePlayPauseButton(newButton: FontAwesomeIcons.playCircle));

@@ -34,7 +34,7 @@ class PlayPauseButtonBloc
       SleepMusicIconBloc sleepMusicIconBloc, ErrorBloc errorBloc) async* {
     if (currentButton == FontAwesomeIcons.playCircle) {
       List<SleepMusicIconClient> playList =
-          await SleepMusicIconData().getPlayList();
+          await SleepMusicIconData().getListOfSleepMusic();
       if (playList == null || playList.length == 0) {
         errorBloc.add(NewError(errorMessage: "Please select a sound to play"));
       } else {

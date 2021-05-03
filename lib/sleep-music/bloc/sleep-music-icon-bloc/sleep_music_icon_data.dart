@@ -3,19 +3,6 @@ import 'package:Sleepify/database/database_sleep_music_icon_client.dart';
 import 'package:Sleepify/database/datatbase.dart';
 
 class SleepMusicIconData {
-  Future<List<SleepMusicIconClient>> getPlayList() async {
-    //TODO : change to dart getter if possible
-    final db = await DBProvider.db.database;
-    var listOfRows = await db.query("SLEEP_MUSIC");
-    List<SleepMusicIconClient> listOfClients = [];
-
-    for (Map<String, dynamic> json in listOfRows) {
-      listOfClients.add(SleepMusicIconClient.fromMap(json));
-    }
-
-    return listOfClients;
-  }
-
   Future<void> delete(
       {@required int musicTypeIndex, @required int musicFileIndex}) async {
     final db = await DBProvider.db.database;
@@ -50,5 +37,17 @@ class SleepMusicIconData {
         musicTypeIndex.toString() +
         " AND music_file_index = " +
         musicFileIndex.toString());
+  }
+
+  Future<List<SleepMusicIconClient>> getListOfSleepMusic() async {
+    //TODO : change to dart getter if possible
+    final db = await DBProvider.db.database;
+    var listOfRows = await db.query("SLEEP_MUSIC");
+    List<SleepMusicIconClient> listOfClients = [];
+    for (Map<String, dynamic> json in listOfRows) {
+      listOfClients.add(SleepMusicIconClient.fromMap(json));
+    }
+
+    return listOfClients;
   }
 }
