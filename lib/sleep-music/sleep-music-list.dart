@@ -13,7 +13,7 @@ class SleepMusicList extends StatelessWidget {
     SleepMusicIconBloc _sleepMusicIconBloc;
     _sleepMusicIconBloc = BlocProvider.of<SleepMusicIconBloc>(context);
     return Flexible(
-      flex: 3,
+      flex: 4,
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: Colors.white),

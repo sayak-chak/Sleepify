@@ -1,3 +1,4 @@
+import 'package:Sleepify/sleep-music/volume-slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Sleepify/constants.dart';
@@ -6,7 +7,7 @@ import 'package:Sleepify/sleep-music/bloc/play-pause-button-bloc/play_pause_butt
 import 'package:Sleepify/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_bloc.dart';
 import 'package:Sleepify/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_event.dart';
 
-class SleepMusicIcon extends StatelessWidget {
+class SleepMusicIcon extends StatefulWidget {
   final int index;
   final int sleepMusicType;
   final Color color;
@@ -14,34 +15,36 @@ class SleepMusicIcon extends StatelessWidget {
     @required this.index,
     @required this.color,
     @required this.sleepMusicType,
+  }) : super(key: UniqueKey());
+
+  @override
+  StateOfSleepMusicIcon createState() {
+    return StateOfSleepMusicIcon(
+      color: color,
+      index: index,
+      sleepMusicType: sleepMusicType,
+    );
+  }
+}
+
+class StateOfSleepMusicIcon extends State<SleepMusicIcon> {
+  //weird name to fix import conflict
+  final int index;
+  final int sleepMusicType;
+  Color color;
+  StateOfSleepMusicIcon({
+    @required this.index,
+    @required this.color,
+    @required this.sleepMusicType,
   });
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.redAccent,
-        ),
-        shape: BoxShape.rectangle,
-        borderRadius: BorderRadius.all(
-          Radius.circular(14.0),
-        ),
-        color: color,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.blueAccent,
-            spreadRadius: color == Colors.white ? 4 : 10,
-            blurRadius: color == Colors.white ? 4 : 10,
-          ),
-          BoxShadow(
-            color: Colors.blueAccent,
-            spreadRadius: color == Colors.white ? -4 : -10,
-            blurRadius: color == Colors.white ? 4 : 10,
-          )
-        ],
-      ),
+      key: UniqueKey(),
+      // padding: EdgeInsets.all(3),
+      // color: Colors.red,
       child: InkWell(
+        focusColor: Colors.red,
         onTap: () async {
           BlocProvider.of<SleepMusicIconBloc>(context).add(
             AddOrRemoveSleepMusicIcon(
@@ -51,30 +54,80 @@ class SleepMusicIcon extends StatelessWidget {
               errorBloc: BlocProvider.of<ErrorBloc>(context),
             ),
           );
+          setState(() {
+            color = color == Colors.red ? Colors.white : Colors.red;
+          });
         },
-        child: SizedBox(
-          width: 180,
-          height: 180,
-          child: Wrap(children: [
-            Column(
-              children: [
-                IconButton(
-                    icon: Icon(Constants.ICON_DATA_LIST[sleepMusicType][index]),
-                    onPressed: () => {}),
-                Center(
-                  child: Text(
-                    Constants.SLEEP_MUSIC_DESC[sleepMusicType][index],
-                    maxLines: 3,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                    ),
+        child: Column(
+          children: [
+            VolumeSlider(),
+            Flexible(
+              child: Container(
+                margin: EdgeInsets.all(5),
+                // decoration: BoxDecoration(
+                //   border: Border.all(
+                //     color: Colors.redAccent,
+                //   ),
+                //   shape: BoxShape.circle,
+                //   // borderRadius: BorderRadius.all(
+                //   //   Radius.circular(14.0),
+                //   // ),
+                //   color: color,
+                //   boxShadow: [
+                //     BoxShadow(
+                //       color: Colors.blueAccent,
+                //       spreadRadius: color == Colors.white ? 4 : 10,
+                //       blurRadius: color == Colors.white ? 4 : 10,
+                //     ),
+                //     BoxShadow(
+                //       color: Colors.blueAccent,
+                //       spreadRadius: color == Colors.white ? -4 : -10,
+                //       blurRadius: color == Colors.white ? 4 : 10,
+                //     )
+                //   ],
+                // ),
+                child: Wrap(children: [
+                  Column(
+                    children: [
+                      Center(
+                        child: IconButton(
+                            icon: Icon(
+                              Constants.ICON_DATA_LIST[sleepMusicType][index],
+                              color: color,
+                            ),
+                            onPressed: () => {}),
+                      ),
+                      // Center(
+                      //   child: Text(
+                      //     Constants.SLEEP_MUSIC_DESC[sleepMusicType][index],
+                      //     maxLines: 3,
+                      //     textAlign: TextAlign.center,
+                      //     style: TextStyle(
+                      //       fontWeight: FontWeight.bold,
+                      //       fontSize: 12,
+                      //     ),
+                      //   ),
+                      // ),
+                    ],
+                  ),
+                ]),
+              ),
+            ),
+            Flexible(
+              child: Center(
+                child: Text(
+                  Constants.SLEEP_MUSIC_DESC[sleepMusicType][index],
+                  maxLines: 3,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                    color: color,
                   ),
                 ),
-              ],
+              ),
             ),
-          ]),
+          ],
         ),
       ),
     );
