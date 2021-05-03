@@ -18,6 +18,8 @@ import 'package:Sleepify/utils/pair_for_sleep_music.dart';
 class SleepMusicIconBloc
     extends Bloc<SleepMusicIconEvent, SleepMusicIconState> {
   HashMap<PairForSleepMusic, AudioPlayer> _playListMap;
+
+  HashMap<PairForSleepMusic, double> playListVolumeMap;
   // bool _isPlayingMusic = false;
   // int _noOfSoundsCurrentlyBeingPlayed = 0;
   int _currentSleepMusicTypeIndex = Constants.SLEEP_MUSIC_TYPE_NATURE;
@@ -58,6 +60,7 @@ class SleepMusicIconBloc
     for (PairForSleepMusic sleepMusic in _playListMap.keys) {
       if (sleepMusic == inputSleepMusic) {
         _playListMap[sleepMusic].setVolume(newVolume);
+        playListVolumeMap[sleepMusic] = newVolume;
         break;
       }
     }
@@ -89,6 +92,7 @@ class SleepMusicIconBloc
 
   Future<void> _mapPlayList(List<SleepMusicIconClient> playList) async {
     _playListMap = HashMap();
+    playListVolumeMap = HashMap();
 
     for (SleepMusicIconClient sleepMusicClient in playList) {
       AudioPlayer audioPlayer = await _player.loop(
@@ -112,6 +116,9 @@ class SleepMusicIconBloc
               musicFileIndex: musicFileIndex)]
           .stop();
       _playListMap.remove(PairForSleepMusic(
+          musicTypeIndex: _currentSleepMusicTypeIndex,
+          musicFileIndex: musicFileIndex));
+      playListVolumeMap.remove(PairForSleepMusic(
           musicTypeIndex: _currentSleepMusicTypeIndex,
           musicFileIndex: musicFileIndex));
       yield ChangedSleepMusicIconColor(
@@ -142,6 +149,13 @@ class SleepMusicIconBloc
               musicFileIndex: musicFileIndex)] =
           await _player.loop(Constants.MUSIC_FILE_CORRESPONDING_TO_ICON_INDEX[
               _currentSleepMusicTypeIndex][musicFileIndex]);
+      playListVolumeMap[PairForSleepMusic(
+          musicTypeIndex: _currentSleepMusicTypeIndex,
+          musicFileIndex: musicFileIndex)] = 0.5; //TODO : definitely refactor
+      _playListMap[PairForSleepMusic(
+              musicTypeIndex: _currentSleepMusicTypeIndex,
+              musicFileIndex: musicFileIndex)]
+          .setVolume(0.5);
       await _playListMap[PairForSleepMusic(
               musicTypeIndex: _currentSleepMusicTypeIndex,
               musicFileIndex: musicFileIndex)]
@@ -162,6 +176,11 @@ class SleepMusicIconBloc
       if (_playListMap[musicFileIndexPair].state == AudioPlayerState.PLAYING) {
         continue;
       } else {
+        if (!playListVolumeMap.containsKey(musicFileIndexPair)) {//TODO: refactor, HACKIEST FIX EVER
+          playListVolumeMap[musicFileIndexPair] = 0.5;
+        }
+        _playListMap[musicFileIndexPair]
+            .setVolume(playListVolumeMap[musicFileIndexPair]);
         await _playListMap[musicFileIndexPair].resume();
       }
     }
@@ -177,7 +196,8 @@ class SleepMusicIconBloc
     if (_playListMap != null &&
         _playListMap.containsKey(PairForSleepMusic(
             musicTypeIndex: sleepMusicType, musicFileIndex: musicFileIndex))) {
-      return 0.0;
+      return playListVolumeMap[PairForSleepMusic(
+          musicTypeIndex: sleepMusicType, musicFileIndex: musicFileIndex)];
     }
     return 0.5;
   }

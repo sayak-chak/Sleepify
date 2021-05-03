@@ -1,5 +1,6 @@
 import 'package:Sleepify/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_bloc.dart';
 import 'package:Sleepify/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_event.dart';
+import 'package:Sleepify/utils/pair_for_sleep_music.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -33,7 +34,7 @@ class VolumeSliderState extends State<VolumeSlider> {
     volume = BlocProvider.of<SleepMusicIconBloc>(context).getVolumeFor(
       sleepMusicType: sleepMusicType,
       musicFileIndex: musicFileIndex,
-    );
+    ) ?? 0.5;
   }
 
   @override
@@ -54,11 +55,18 @@ class VolumeSliderState extends State<VolumeSlider> {
             activeColor: Colors.green,
             inactiveColor: Colors.orange,
             onChangeEnd: (double newVolume) {
-              BlocProvider.of<SleepMusicIconBloc>(context).add(
-                  ChangeVolumeOfCurrentlyPlayingMusic(
-                      sleepMusicType: sleepMusicType,
-                      musicFileIndex: musicFileIndex,
-                      newVolume: newVolume));
+              if (BlocProvider.of<SleepMusicIconBloc>(context)
+                  .playListVolumeMap != null && BlocProvider.of<SleepMusicIconBloc>(context)
+                  .playListVolumeMap
+                  .containsKey(PairForSleepMusic(
+                      musicTypeIndex: sleepMusicType,
+                      musicFileIndex: musicFileIndex))) { //TODO: refactor ASAP
+                BlocProvider.of<SleepMusicIconBloc>(context).add(
+                    ChangeVolumeOfCurrentlyPlayingMusic(
+                        sleepMusicType: sleepMusicType,
+                        musicFileIndex: musicFileIndex,
+                        newVolume: newVolume));
+              }
             },
             onChanged: (double newVolume) {
               setState(() {
