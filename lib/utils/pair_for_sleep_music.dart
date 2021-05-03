@@ -23,6 +23,7 @@ class PairForSleepMusicFile extends SleepifyPair {
 class PairForSleepMusicPlayerAndVolume extends SleepifyPair {
   final AudioPlayer audioPlayer;
   double volume;
-  PairForSleepMusicPlayerAndVolume({@required this.audioPlayer, @required this.volume})
+  PairForSleepMusicPlayerAndVolume(
+      {@required this.audioPlayer, @required this.volume})
       : super(firstElement: audioPlayer, secondElement: volume);
 }

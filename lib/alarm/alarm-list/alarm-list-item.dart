@@ -61,15 +61,15 @@ class AlarmListItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              TextButton(
-                child: const Text('Cancel'),
-                onPressed: () async {
-                  await FlutterLocalNotificationsPlugin().cancel(mm + hh * 60);
-                  await alarmListBloc.cancelAlarm(id: mm + hh * 60);
-                  alarmPageBloc.add(UpdateAlarmPageScreen(
-                      screenIndex: Constants.ALARM_PAGE_ALARM_LIST_INDEX));
-                },
-              ),
+              // TextButton(
+              //   child: const Text('Cancel'),
+              //   onPressed: () async {
+              //     await FlutterLocalNotificationsPlugin().cancel(mm + hh * 60);
+              //     await alarmListBloc.cancelAlarm(id: mm + hh * 60);
+              //     alarmPageBloc.add(UpdateAlarmPageScreen(
+              //         screenIndex: Constants.ALARM_PAGE_ALARM_LIST_INDEX));
+              //   },
+              // ),
               TextButton(
                 child: const Text('Cancel'),
                 onPressed: () async {

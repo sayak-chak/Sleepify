@@ -57,19 +57,19 @@ class StateOfSleepMusicIcon extends State<SleepMusicIcon> {
           );
           if (!(BlocProvider.of<ErrorBloc>(context).state is ErrorState)) {
             setState(() {
-            color = color == Colors.red ? Colors.white : Colors.red;
-          });
+              color = color == Colors.red ? Colors.white : Colors.red;
+            });
           }
-      //     BlocBuilder(
-      //   bloc: BlocProvider.of<ErrorBloc>(context).,
-      //   builder: (BuildContext context, ErrorState state) {
-      //     if (!(state is DisplayError)) {
-      //       setState(() {
-      //       color = color == Colors.red ? Colors.white : Colors.red;
-      //     });
-      //     }
-      //   },
-      // )
+          //     BlocBuilder(
+          //   bloc: BlocProvider.of<ErrorBloc>(context).,
+          //   builder: (BuildContext context, ErrorState state) {
+          //     if (!(state is DisplayError)) {
+          //       setState(() {
+          //       color = color == Colors.red ? Colors.white : Colors.red;
+          //     });
+          //     }
+          //   },
+          // )
         },
         child: Container(
           decoration: color == Colors.white

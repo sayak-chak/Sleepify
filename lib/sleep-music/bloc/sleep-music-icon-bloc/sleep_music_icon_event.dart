@@ -36,9 +36,8 @@ class ChangeVolumeOfCurrentlyPlayingMusic extends SleepMusicIconEvent {
   final int sleepMusicType;
   final int musicFileIndex;
   final double newVolume;
-  ChangeVolumeOfCurrentlyPlayingMusic({
-    @required this.sleepMusicType,
-    @required this.musicFileIndex,
-    @required this.newVolume
-  });
+  ChangeVolumeOfCurrentlyPlayingMusic(
+      {@required this.sleepMusicType,
+      @required this.musicFileIndex,
+      @required this.newVolume});
 }

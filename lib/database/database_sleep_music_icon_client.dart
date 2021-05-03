@@ -18,22 +18,21 @@ class SleepMusicIconClient {
   int musicTypeIndex;
   double volume;
 
-  SleepMusicIconClient({
-    @required this.musicTypeIndex,
-    @required this.musicFileIndex,
-    @required this.volume
-  });
+  SleepMusicIconClient(
+      {@required this.musicTypeIndex,
+      @required this.musicFileIndex,
+      @required this.volume});
 
   factory SleepMusicIconClient.fromMap(Map<String, dynamic> json) =>
       new SleepMusicIconClient(
-          musicTypeIndex: json["music_type_index"] as int,
-          musicFileIndex: json["music_file_index"] as int,
-          volume: json["volume"] as double,
-          );
+        musicTypeIndex: json["music_type_index"] as int,
+        musicFileIndex: json["music_file_index"] as int,
+        volume: json["volume"] as double,
+      );
 
   Map<String, dynamic> toMap() => {
         "music_type_index": musicTypeIndex,
         "music_file_index": musicFileIndex,
-        "volume" : volume,
+        "volume": volume,
       };
 }

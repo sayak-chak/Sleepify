@@ -39,8 +39,10 @@ class SleepMusicIconData {
     });
   }
 
-  Future<void> update({@required int musicTypeIndex,
-      @required int musicFileIndex, @required double volume}) async {
+  Future<void> update(
+      {@required int musicTypeIndex,
+      @required int musicFileIndex,
+      @required double volume}) async {
     final db = await DBProvider.db.database;
     await db.rawUpdate("UPDATE SLEEP_MUSIC SET volume = " +
         volume.toString() +

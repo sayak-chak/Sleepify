@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/CustomIcons.ttf
 ///
-/// 
+///
 /// * Meteocons, Copyright (C) 2012 by Alessio Atzeni
 ///         Author:    Alessio Atzeni
 ///         License:   SIL (http://scripts.sil.org/OFL)
@@ -29,7 +29,10 @@ class CustomIcons {
   static const _kFontFam = 'CustomIcons';
   static const String _kFontPkg = null;
 
-  static const IconData drizzle_inv = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData rain_inv = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData cloud_thunder = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData drizzle_inv =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData rain_inv =
+      IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData cloud_thunder =
+      IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
