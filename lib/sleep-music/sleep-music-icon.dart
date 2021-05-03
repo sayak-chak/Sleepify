@@ -58,76 +58,69 @@ class StateOfSleepMusicIcon extends State<SleepMusicIcon> {
             color = color == Colors.red ? Colors.white : Colors.red;
           });
         },
-        child: Column(
-          children: [
-            VolumeSlider(),
-            Flexible(
-              child: Container(
-                margin: EdgeInsets.all(5),
-                // decoration: BoxDecoration(
-                //   border: Border.all(
-                //     color: Colors.redAccent,
-                //   ),
-                //   shape: BoxShape.circle,
-                //   // borderRadius: BorderRadius.all(
-                //   //   Radius.circular(14.0),
-                //   // ),
-                //   color: color,
-                //   boxShadow: [
-                //     BoxShadow(
-                //       color: Colors.blueAccent,
-                //       spreadRadius: color == Colors.white ? 4 : 10,
-                //       blurRadius: color == Colors.white ? 4 : 10,
-                //     ),
-                //     BoxShadow(
-                //       color: Colors.blueAccent,
-                //       spreadRadius: color == Colors.white ? -4 : -10,
-                //       blurRadius: color == Colors.white ? 4 : 10,
-                //     )
-                //   ],
-                // ),
-                child: Wrap(children: [
-                  Column(
-                    children: [
-                      Center(
-                        child: IconButton(
-                            icon: Icon(
-                              Constants.ICON_DATA_LIST[sleepMusicType][index],
-                              color: color,
-                            ),
-                            onPressed: () => {}),
-                      ),
-                      // Center(
-                      //   child: Text(
-                      //     Constants.SLEEP_MUSIC_DESC[sleepMusicType][index],
-                      //     maxLines: 3,
-                      //     textAlign: TextAlign.center,
-                      //     style: TextStyle(
-                      //       fontWeight: FontWeight.bold,
-                      //       fontSize: 12,
-                      //     ),
-                      //   ),
-                      // ),
-                    ],
+        child: Container(
+          decoration: color == Colors.white
+              ? null
+              : BoxDecoration(
+                  border: Border.all(
+                    color: Colors.redAccent,
                   ),
-                ]),
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(14.0),
+                  ),
+                  // color: color,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black87,
+                      // spreadRadius: 10,
+                      // blurRadius: 10,
+                    ),
+                    BoxShadow(
+                      color: Colors.black87,
+                      // spreadRadius: -10,
+                      // blurRadius: 10,
+                    )
+                  ],
+                ),
+          child: Column(
+            children: [
+              VolumeSlider(),
+              Flexible(
+                child: Container(
+                  margin: EdgeInsets.all(5),
+                  child: Wrap(children: [
+                    Column(
+                      children: [
+                        Center(
+                          child: IconButton(
+                              icon: Icon(
+                                Constants.ICON_DATA_LIST[sleepMusicType][index],
+                                color: color,
+                              ),
+                              onPressed: () => {}),
+                        ),
+                      ],
+                    ),
+                  ]),
+                ),
               ),
-            ),
-            Flexible(
-              child: Center(
-                child: Text(
-                  Constants.SLEEP_MUSIC_DESC[sleepMusicType][index],
-                  maxLines: 3,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                    color: color,
+              Flexible(
+                child: Center(
+                  child: Text(
+                    Constants.SLEEP_MUSIC_DESC[sleepMusicType][index],
+                    maxLines: 3,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                      color: color,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
