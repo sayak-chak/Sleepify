@@ -45,6 +45,21 @@ class SleepMusicIconBloc
       await _pauseAllSounds();
     } else if (event is UpdateSleepMusicTypeList) {
       yield* _updateSleepMusicTypeIndex(event.sleepMusicListType);
+    } else if (event is ChangeVolumeOfCurrentlyPlayingMusic) {
+      _updateVolumeIfSongIsInPlayList(
+          event.sleepMusicType, event.musicFileIndex, event.newVolume);
+    }
+  }
+
+  void _updateVolumeIfSongIsInPlayList(
+      int sleepMusicType, int musicFileIndex, double newVolume) {
+    PairForSleepMusic inputSleepMusic = PairForSleepMusic(
+        musicTypeIndex: sleepMusicType, musicFileIndex: musicFileIndex);
+    for (PairForSleepMusic sleepMusic in _playListMap.keys) {
+      if (sleepMusic == inputSleepMusic) {
+        _playListMap[sleepMusic].setVolume(newVolume);
+        break;
+      }
     }
   }
 
@@ -156,5 +171,14 @@ class SleepMusicIconBloc
     for (PairForSleepMusic musicFileIndexPair in _playListMap.keys) {
       await _playListMap[musicFileIndexPair].pause();
     }
+  }
+
+  double getVolumeFor({int sleepMusicType, int musicFileIndex}) {
+    if (_playListMap != null &&
+        _playListMap.containsKey(PairForSleepMusic(
+            musicTypeIndex: sleepMusicType, musicFileIndex: musicFileIndex))) {
+      return 0.0;
+    }
+    return 0.5;
   }
 }

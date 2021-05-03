@@ -1,14 +1,40 @@
+import 'package:Sleepify/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_bloc.dart';
+import 'package:Sleepify/sleep-music/bloc/sleep-music-icon-bloc/sleep_music_icon_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class VolumeSlider extends StatefulWidget {
+  final int sleepMusicType, musicFileIndex;
+
+  VolumeSlider({
+    @required this.sleepMusicType,
+    @required this.musicFileIndex,
+  });
+
   @override
-  State<StatefulWidget> createState() => VolumeSliderState(volume: 0.5);
+  State<StatefulWidget> createState() => VolumeSliderState(
+        sleepMusicType: this.sleepMusicType,
+        musicFileIndex: this.musicFileIndex,
+      );
 }
 
 class VolumeSliderState extends State<VolumeSlider> {
   double volume;
-  VolumeSliderState({@required this.volume});
+  final int sleepMusicType, musicFileIndex;
+
+  VolumeSliderState({
+    @required this.sleepMusicType,
+    @required this.musicFileIndex,
+  });
+  @override
+  void initState() {
+    //TODO : definitely refactor
+    volume = BlocProvider.of<SleepMusicIconBloc>(context).getVolumeFor(
+      sleepMusicType: sleepMusicType,
+      musicFileIndex: musicFileIndex,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +54,11 @@ class VolumeSliderState extends State<VolumeSlider> {
             activeColor: Colors.green,
             inactiveColor: Colors.orange,
             onChangeEnd: (double newVolume) {
-              print("OVA");
+              BlocProvider.of<SleepMusicIconBloc>(context).add(
+                  ChangeVolumeOfCurrentlyPlayingMusic(
+                      sleepMusicType: sleepMusicType,
+                      musicFileIndex: musicFileIndex,
+                      newVolume: newVolume));
             },
             onChanged: (double newVolume) {
               setState(() {

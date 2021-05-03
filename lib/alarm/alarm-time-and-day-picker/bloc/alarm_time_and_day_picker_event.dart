@@ -36,3 +36,5 @@ class SetToThursday extends AlarmTimeAndDayPickerEvent {}
 class SetToFriday extends AlarmTimeAndDayPickerEvent {}
 
 class SetToSaturday extends AlarmTimeAndDayPickerEvent {}
+
+class ShowPickerToEdit extends AlarmTimeAndDayPickerEvent {}

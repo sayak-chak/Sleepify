@@ -1,3 +1,4 @@
+import 'package:Sleepify/errors/error-bloc/error_state.dart';
 import 'package:Sleepify/sleep-music/volume-slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,9 +55,21 @@ class StateOfSleepMusicIcon extends State<SleepMusicIcon> {
               errorBloc: BlocProvider.of<ErrorBloc>(context),
             ),
           );
-          setState(() {
+          if (!(BlocProvider.of<ErrorBloc>(context).state is ErrorState)) {
+            setState(() {
             color = color == Colors.red ? Colors.white : Colors.red;
           });
+          }
+      //     BlocBuilder(
+      //   bloc: BlocProvider.of<ErrorBloc>(context).,
+      //   builder: (BuildContext context, ErrorState state) {
+      //     if (!(state is DisplayError)) {
+      //       setState(() {
+      //       color = color == Colors.red ? Colors.white : Colors.red;
+      //     });
+      //     }
+      //   },
+      // )
         },
         child: Container(
           decoration: color == Colors.white
@@ -85,7 +98,10 @@ class StateOfSleepMusicIcon extends State<SleepMusicIcon> {
                 ),
           child: Column(
             children: [
-              VolumeSlider(),
+              VolumeSlider(
+                sleepMusicType: sleepMusicType,
+                musicFileIndex: index,
+              ),
               Flexible(
                 child: Container(
                   margin: EdgeInsets.all(5),
